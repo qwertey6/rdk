@@ -235,6 +235,12 @@ func NewPlanSegmentContext(ctx context.Context, pc *PlanContext, start *referenc
 func (psc *PlanSegmentContext) CheckPath(
 	ctx context.Context, start, end *referenceframe.LinearInputs, checkFinal bool, outPath *PathFeedback,
 ) error {
+	return psc.checkPath(ctx, start, end, checkFinal, outPath, false)
+}
+
+func (psc *PlanSegmentContext) checkPath(
+	ctx context.Context, start, end *referenceframe.LinearInputs, checkFinal bool, outPath *PathFeedback, shortcut bool,
+) error {
 	if err := ctx.Err(); err != nil {
 		return err
 	}
@@ -246,16 +252,14 @@ func (psc *PlanSegmentContext) CheckPath(
 		}
 	}
 
-	validSegment, err := psc.Checker.CheckStateConstraintsAcrossSegmentFS(
-		ctx,
-		&motionplan.SegmentFS{
-			StartConfiguration: start,
-			EndConfiguration:   end,
-			FS:                 psc.pc.fs,
-		},
-		psc.pc.planOpts.Resolution,
-		checkFinal,
-	)
+	segment := &motionplan.SegmentFS{StartConfiguration: start, EndConfiguration: end, FS: psc.pc.fs}
+	var validSegment *motionplan.SegmentFS
+	var err error
+	if shortcut && outPath == nil {
+		err = psc.Checker.CheckShortcutFS(ctx, segment, psc.pc.planOpts.Resolution, checkFinal)
+	} else {
+		validSegment, err = psc.Checker.CheckStateConstraintsAcrossSegmentFS(ctx, segment, psc.pc.planOpts.Resolution, checkFinal)
+	}
 	if err == nil && hashA != 0 && hashB != 0 {
 		psc.checkedEdges.Store(key, struct{}{})
 	}

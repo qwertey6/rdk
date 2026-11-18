@@ -46,6 +46,8 @@ type CollisionConstraints struct {
 // ConstraintChecker is a convenient wrapper for constraint handling which is likely to be common among most motion
 // planners. Including a constraint handler as an anonymous struct member allows reuse.
 type ConstraintChecker struct {
+	exactStateScope      uint64
+	exactStateFS         *referenceframe.FrameSystem
 	motionBounds         *referenceframe.MotionBounds
 	streaming            bool
 	nativeCallbacks      bool
@@ -165,11 +167,18 @@ func NewConstraintChecker(
 		return nil, err
 	}
 
+	if handler.HasNativeMotionBounds() && handler.motionBounds.HasNativePoses() && cache != nil &&
+		exactStateNativeGeometry(movingRobotGeometries, staticRobotGeometries, worldGeometries) {
+		handler.exactStateScope = cache.exactStateScopes.Add(1)
+		handler.exactStateFS = fs
+	}
+
 	return handler, nil
 }
 
 // SetCollisionConstraints set the collision constraints explicitly
 func (c *ConstraintChecker) SetCollisionConstraints(cs CollisionConstraints) {
+	c.exactStateScope = 0
 	c.motionBounds = nil
 	c.nativeCallbacks = false
 	c.collisionConstraints = cs
@@ -346,6 +355,10 @@ func (c *ConstraintChecker) CheckStateFSConstraints(ctx context.Context, state *
 		}
 	}
 
+	if c.exactStateScope != 0 && c.HasNativeMotionBounds() && c.geometry != nil &&
+		c.cache != nil && state.FS == c.exactStateFS && ctx.Value(finishingCollisionReuseKey{}) == true {
+		return c.checkExactStateCollisions(ctx, state)
+	}
 	return c.checkStateCollisions(state)
 }
 
