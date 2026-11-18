@@ -1,6 +1,6 @@
 The extracted four-PR stack used **21.7% less ordered planning time than frozen original native**, saving **16.89 ms/request** (exploratory 95% interval: 18.7–24.4% less time). Individual scenes used **2.2% less time**, with an interval crossing no change. **Ordered p99 worsened 26.0%: 487.1 → 613.9 ms.** All 6,024 full-stack attempts, including warmup and the duplicate scene, passed the frozen independent audit.
 
-The four dependent branches are extracted and validated against current main `8ab5892be`. Publication links and exact head/base identities are maintained in PULL_REQUESTS.md. Review order is **main ← PR1 ← PR2 ← PR3 ← PR4**. Each branch contains runtime changes and its own regression tests/fixtures. Reports, figures, runners and manifests are auxiliary evidence; none appears in the production diffs.
+The four dependent branches are extracted and validated against current main `8ab5892be`. [The four draft PRs and exact head/base identities](PULL_REQUESTS.md) are published in `qwertey6/rdk`; the active account has read-only upstream access. Review order is **main ← PR1 ← PR2 ← PR3 ← PR4**. Each branch contains runtime changes and its own regression tests/fixtures. Reports, figures, runners and manifests are auxiliary evidence; none appears in the production diffs.
 
 | PR | Branch | Runtime | Tests / fixtures | Files |
 |---|---|---:|---:|---:|

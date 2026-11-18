@@ -1,4 +1,4 @@
-The four production branches are extracted, each with one commit and its own tests. Published draft URLs are tracked in PULL_REQUESTS.md. Source IDs and line counts are in [evidence/diff-stats.json](evidence/diff-stats.json).
+The four production branches are extracted, each with one commit and its own tests. Published draft URLs are tracked in [PULL_REQUESTS.md](PULL_REQUESTS.md). Source IDs and line counts are in [evidence/diff-stats.json](evidence/diff-stats.json).
 
 Open four dependent reviews in this order:
 
