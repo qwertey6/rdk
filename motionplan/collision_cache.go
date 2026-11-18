@@ -28,6 +28,8 @@ import (
 // motionplan call chain was measurably slower than direct field access on
 // the mesh.
 type CollisionCache struct {
+	exactStates      exactStateMemo
+	exactStateScopes atomic.Uint64
 	// obstaclePairHint, selfPairHint, robotPairHint each cache the
 	// most-recently-violated geometry-label pair for one constraint type.
 	// Lock-free reads via atomic; stale reads are harmless.

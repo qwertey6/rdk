@@ -21,7 +21,7 @@ func simpleSmoothStep(ctx context.Context, psc *PlanSegmentContext, steps []*ref
 			return steps
 		}
 		*budget--
-		err := psc.CheckPath(ctx, steps[i-step-1], steps[i], false, nil)
+		err := checkSmoothingPath(ctx, psc, steps[i-step-1], steps[i], false)
 		if err != nil {
 			continue
 		}
@@ -38,12 +38,22 @@ func smoothMultiArms(
 	if len(psc.pc.movableFrames) == 1 {
 		return
 	}
+	frames := psc.pc.movableFrames
+	if psc.Checker.HasNativeMotionBounds() {
+		if owners, ok := smoothingInputFrames(psc.pc.fs, frames); ok {
+			if len(owners) <= 1 {
+				return
+			}
+
+			frames = owners
+		}
+	}
 
 	start := 0
 	end := len(steps) - 1
 
 nextFrame:
-	for _, frameToModify := range psc.pc.movableFrames {
+	for _, frameToModify := range frames {
 		// For each frame run an experiment. We'll change the steps for the current `frameToModify`
 		// while leaving the rest as they are. We'll change each `frameToModify` to do a
 		// straight-line interpolation between the start and end step. To smooth out unnecessary 0
@@ -84,7 +94,7 @@ nextFrame:
 				acc = append(acc, inpsAtStep)
 			}
 
-			err := psc.CheckPath(ctx, prev, tmpStep, true, nil)
+			err := checkSmoothingPath(ctx, psc, prev, tmpStep, true)
 			if err != nil {
 				// Doing a straight-line interpolation for `frameToModify` failed. Leave this arm's
 				// path alone and try the next one.
@@ -168,7 +178,7 @@ func vertexPullStep(ctx context.Context, psc *PlanSegmentContext, steps []*refer
 					return steps
 				}
 				*budget -= 2
-				if psc.CheckPath(ctx, prev, cand, false, nil) != nil || psc.CheckPath(ctx, cand, next, false, nil) != nil {
+				if checkSmoothingPath(ctx, psc, prev, cand, false) != nil || checkSmoothingPath(ctx, psc, cand, next, false) != nil {
 					continue
 				}
 				steps[i] = cand
@@ -193,20 +203,26 @@ func smoothPathSimple(ctx context.Context, psc *PlanSegmentContext,
 	start := time.Now()
 
 	originalSize := len(steps)
+	// Preserve the existing coarse simplification and idle-component cleanup.
+	// The work cap applies to optional detour refinement after this first pass.
+	cleanupCtx := context.WithValue(ctx, finishingBudgetKey{}, (*finishingBudget)(nil))
+	if trial, accepted := tryGuardedFinishing(ctx, cleanupCtx, psc, steps); accepted {
+		return tryOnlyMovingComponentsThatNeedToMove(cleanupCtx, psc, trial)
+	}
 	budget := smoothProbeBudget
 	if len(steps) > 40 {
-		steps = simpleSmoothStep(ctx, psc, steps, 10, &budget)
+		steps = simpleSmoothStep(cleanupCtx, psc, steps, 10, &budget)
 	}
 	if len(steps) > 15 {
-		steps = simpleSmoothStep(ctx, psc, steps, 3, &budget)
+		steps = simpleSmoothStep(cleanupCtx, psc, steps, 3, &budget)
 	}
-	steps = simpleSmoothStep(ctx, psc, steps, 1, &budget)
+	steps = simpleSmoothStep(cleanupCtx, psc, steps, 1, &budget)
 	steps = vertexPullStep(ctx, psc, steps, &budget)
 	// Pulled vertices can straighten segments enough to make whole waypoints
 	// removable, so run one more removal pass.
 	steps = simpleSmoothStep(ctx, psc, steps, 1, &budget)
 
-	steps = tryOnlyMovingComponentsThatNeedToMove(ctx, psc, steps)
+	steps = tryOnlyMovingComponentsThatNeedToMove(cleanupCtx, psc, steps)
 
 	if len(steps) != originalSize {
 		psc.pc.logger.Debugf("simpleSmooth %d -> %d in %v", originalSize, len(steps), time.Since(start))
@@ -222,10 +238,14 @@ func smoothPathSimple(ctx context.Context, psc *PlanSegmentContext,
 func smoothPath(
 	ctx context.Context, psc *PlanSegmentContext, steps []*referenceframe.LinearInputs,
 ) (final, compact []*referenceframe.LinearInputs, err error) {
+	ctx = motionplan.WithFinishingCollisionReuse(ctx)
+
 	ctx, span := trace.StartSpan(ctx, "smoothPlan")
 	defer span.End()
 
-	compact = smoothPathSimple(ctx, psc, steps)
+	budget := newFinishingBudget(psc, steps)
+	optionalCtx := context.WithValue(ctx, finishingBudgetKey{}, budget)
+	compact = smoothPathSimple(optionalCtx, psc, steps)
 	// The above smoothing does smaller straight-line interpolations for all inputs at once. In the
 	// case of multiple arms we can sometimes smooth one arm but not the other. This follow-up call
 	// handles a narrow branch of egregious cases.
@@ -276,9 +296,8 @@ func addCloseObstacleWaypoints(
 // findCloseObstacleWaypoints interpolates between start and end at full
 // resolution, verifying every state, and reports configurations that come
 // within the close-obstacle threshold. blocked is true when any state violates
-// a constraint. States whose clearance proves the next several interpolation
-// steps cannot collide are skipped for collision purposes (their cheap
-// topological constraints are still verified individually).
+// a constraint. Collision skips require a certificate covering every moving
+// geometry and the close-waypoint threshold; all other constraints stay dense.
 func findCloseObstacleWaypoints(
 	ctx context.Context,
 	psc *PlanSegmentContext,
@@ -291,12 +310,13 @@ func findCloseObstacleWaypoints(
 	}
 
 	resolution := psc.pc.planOpts.Resolution
-	interpolated, err := motionplan.InterpolateSegmentFS(segment, resolution)
+	validation, err := psc.Checker.SegmentValidation(segment, resolution)
 	if err != nil {
 		return nil, false, err
 	}
 
-	if len(interpolated) < 3 {
+	interpolated := validation.Samples
+	if interpolated.Len() < 3 {
 		return nil, false, nil
 	}
 
@@ -304,37 +324,22 @@ func findCloseObstacleWaypoints(
 
 	var closeWaypoints []*referenceframe.LinearInputs
 
-	for i := 1; i < len(interpolated)-1; i++ {
-		state := &motionplan.StateFS{
-			FS:            psc.pc.fs,
-			Configuration: interpolated[i],
+	for i := 1; i < interpolated.Len()-1; i++ {
+		if err := ctx.Err(); err != nil {
+			return nil, false, err
 		}
-
-		closestObstacle, err := psc.Checker.CheckStateFSConstraints(ctx, state)
+		q, closestObstacle, err := validation.Check(ctx, i, closeThreshold)
+		if ctx.Err() != nil {
+			return nil, false, ctx.Err()
+		}
 		if err != nil {
 			return nil, true, nil //nolint:nilerr // constraint violation is the blocked verdict, not an error
 		}
 
 		if closestObstacle < closeThreshold {
-			closeWaypoints = append(closeWaypoints, interpolated[i])
+			closeWaypoints = append(closeWaypoints, q.Copy())
 			continue
 		}
-
-		// Clearance-bound skipping (same argument as the segment checker's):
-		// nothing can collide within the next canSkip steps, and no state in
-		// them can be within the close threshold either. Topological
-		// constraints carry no such bound but are cheap; verify them per
-		// skipped state.
-		canSkip := int(min(100, (closestObstacle-closeThreshold)/resolution))
-		for j := i + 1; j <= i+canSkip && j < len(interpolated)-1; j++ {
-			if err := psc.Checker.CheckStateFSTopoOnly(&motionplan.StateFS{
-				FS:            psc.pc.fs,
-				Configuration: interpolated[j],
-			}); err != nil {
-				return nil, true, nil //nolint:nilerr // constraint violation is the blocked verdict, not an error
-			}
-		}
-		i += canSkip
 	}
 
 	return closeWaypoints, false, nil
@@ -375,7 +380,7 @@ func tryOnlyMovingComponentsThatNeedToMove(ctx context.Context, psc *PlanSegment
 			continue
 		}
 
-		err := psc.CheckPath(ctx, prev, updated, false, nil)
+		err := checkSmoothingPath(ctx, psc, prev, updated, false)
 		if err == nil {
 			steps[idx] = updated
 		}
