@@ -633,11 +633,11 @@ func TestCalculateJointStepCount(t *testing.T) {
 	})
 }
 
-// TestSegmentStepCount tests that segmentStepCount correctly emits step count from either joint or cartesian excursion
+// TestSegmentStepCount checks both the angular sampling bound and the Cartesian resolution.
 func TestSegmentStepCount(t *testing.T) {
 	model, err := referenceframe.ParseModelJSONFile(utils.ResolveFile("components/arm/kinematics/ur20.json"), "")
 	test.That(t, err, test.ShouldBeNil)
-	jointStepSize := jointStepSizeFromLimits(model.DoF())
+	jointStepSize := 0.002 // The collision checker now enforces this angular sampling bound.
 
 	fs := referenceframe.NewEmptyFrameSystem("test")
 	err = fs.AddFrame(model, fs.World())
@@ -681,10 +681,11 @@ func TestSegmentStepCount(t *testing.T) {
 		endPos, err := model.Transform(endConfig)
 		test.That(t, err, test.ShouldBeNil)
 
-		cartesianSteps := CalculateStepCount(startPos, endPos, 1.0)
+		// Use a finer Cartesian resolution so it exceeds even the angular bound.
+		cartesianSteps := CalculateStepCount(startPos, endPos, 0.1)
 		jointSteps := calculateJointStepCount(startConfig, endConfig, jointStepSize)
 
-		totalSteps, err := segmentStepCount(segment, 1.0)
+		totalSteps, err := segmentStepCount(segment, 0.1)
 		test.That(t, err, test.ShouldBeNil)
 
 		// Cartesian steps should dominate over joint for this trajectory

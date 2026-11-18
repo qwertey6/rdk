@@ -7,6 +7,7 @@ import (
 	"math"
 	"math/rand"
 	"slices"
+	"sync"
 	"time"
 
 	"go.viam.com/utils/trace"
@@ -382,7 +383,7 @@ func (pm *planManager) generateWaypoints(ctx context.Context, start, goal refere
 ) ([]referenceframe.FrameSystemPoses, bool, error) {
 	_, span := trace.StartSpan(ctx, "generateWaypoints")
 	defer span.End()
-	if len(pm.request.Constraints.LinearConstraint) == 0 {
+	if pm.request.Constraints == nil || len(pm.request.Constraints.LinearConstraint) == 0 {
 		return []referenceframe.FrameSystemPoses{goal}, true, nil
 	}
 
@@ -646,7 +647,11 @@ func (pm *planManager) raceCBiRRT(
 	attempts := max(1, cbirrtRaceAttempts)
 
 	raceCtx, cancel := context.WithCancel(ctx)
-	defer cancel()
+	var workers sync.WaitGroup
+	defer func() {
+		cancel()
+		workers.Wait()
+	}()
 
 	type raceResult struct {
 		steps      []*referenceframe.LinearInputs
@@ -654,13 +659,13 @@ func (pm *planManager) raceCBiRRT(
 		attempt    int
 		viaRoadmap bool
 	}
-	// Buffered to the lifetime attempt cap so no sender can ever block: once
+	// Buffered for the attempt cap or a larger initial worker override: once
 	// a winner returns, the remaining in-flight attempts each deposit their
 	// result and exit regardless of readers. (In-flight concurrency is still
 	// bounded by `attempts` - relaunches only follow a consumed result - but
 	// sizing the buffer to the cap makes the no-blocked-sender property
 	// unconditional rather than an invariant of the reader loop.)
-	results := make(chan raceResult, maxTotalAttempts+1)
+	results := make(chan raceResult, max(maxTotalAttempts, attempts)+1)
 
 	// Seed the goal retreat corridors once on the master maps; every attempt's
 	// clone inherits them, so restarts don't repeat the corridor IK.
@@ -674,7 +679,9 @@ func (pm *planManager) raceCBiRRT(
 	// biases racers toward corridor-bearing roots without excluding the rest.
 
 	launch := func(a int) {
+		workers.Add(1)
 		go func(a int) {
+			defer workers.Done()
 			logger := pm.logger.Sublogger(fmt.Sprintf("cbirrt%d", a))
 			planner, err := newCBiRRTMotionPlanner(raceCtx, pm.pc, psc, logger)
 			if err != nil {
@@ -707,7 +714,9 @@ func (pm *planManager) raceCBiRRT(
 	// A* between edge validations.
 	racingRoadmap := roadmapRacesSearch && len(goalRoots) > 0
 	if racingRoadmap {
+		workers.Add(1)
 		go func() {
+			defer workers.Done()
 			path := pm.tryRoadmap(raceCtx, psc, goalRoots, pm.logger.Sublogger("roadmap"))
 			if path == nil {
 				results <- raceResult{nil, errRoadmapNoPath, roadmapAttemptID, true}

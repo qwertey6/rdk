@@ -392,10 +392,12 @@ func (c *ConstraintChecker) CheckStateConstraintsAcrossSegmentFS(
 	if !checkFinal {
 		end--
 	}
+	// Clearance alone does not bound link displacement per interpolation step.
+	// Inspect every required sample until a conservative motion bound is available.
 	for i := 0; i < end; i++ {
 		interpConfig := interpolatedConfigurations[i]
 		interpC := &StateFS{FS: ci.FS, Configuration: interpConfig}
-		closestObstacle, err := c.CheckStateFSConstraints(ctx, interpC)
+		_, err := c.CheckStateFSConstraints(ctx, interpC)
 		if err != nil {
 			if i == 0 {
 				// fail on start pos
@@ -405,37 +407,6 @@ func (c *ConstraintChecker) CheckStateConstraintsAcrossSegmentFS(
 		}
 		lastGood = interpC.Configuration
 
-		// The clearance at this state proves the next canSkip states cannot
-		// collide (the robot can't cross a gap faster than it moves), so the
-		// expensive collision constraints may be skipped for them. Topological
-		// constraints (orientation/linear) carry no such guarantee but are
-		// cheap - a single FK pass per state - so evaluate just those on the
-		// skipped states instead of disabling skipping altogether.
-		//
-		// The cushion keeps this sweep's verdicts consistent with the
-		// full-resolution finalization pass (armplanning's
-		// findCloseObstacleWaypoints), which checks every state within
-		// 10x the collision buffer of an obstacle: skipping must never hop
-		// into that near zone, or a path accepted here can be rejected at
-		// finalization and fail an otherwise-solved plan. The interpolation
-		// step count also bounds only frame-origin and joint deltas, not
-		// distal geometry on a lever arm, so the raw clearance skip could
-		// overshoot through a thin obstacle; the cushion absorbs that too.
-		cushion := math.Max(0.1, 10*c.collisionBufferMM)
-		canSkip := int(min(100, math.Floor((closestObstacle-cushion)/resolution)))
-		if canSkip > 0 && c.topoConstraint != nil {
-			for j := i + 1; j <= i+canSkip && j < end; j++ {
-				topoC := &StateFS{FS: ci.FS, Configuration: interpolatedConfigurations[j]}
-				if err := c.topoConstraint(topoC); err != nil {
-					return &SegmentFS{StartConfiguration: ci.StartConfiguration, EndConfiguration: lastGood, FS: ci.FS}, err
-				}
-				// Collision-free by the clearance bound and topo-checked: valid.
-				lastGood = topoC.Configuration
-			}
-		}
-		if canSkip > 0 {
-			i += canSkip
-		}
 	}
 
 	return nil, nil
@@ -892,6 +863,12 @@ func segmentStepCount(ci *SegmentFS, resolution float64) (int, error) {
 
 		maxSteps = max(maxSteps, CalculateStepCount(startPos, endPos, resolution))
 		maxSteps = max(maxSteps, calculateJointStepCount(startConfig, endConfig, jointStepSize))
+		// Joint-limit width must not determine collision fidelity: broad limits
+		// previously allowed >0.01-radian gaps even next to thin obstacles.
+		// Preserve millimeter units for prismatic joints and the generic fallback.
+		if steps, ok := referenceframe.JointInterpolationSteps(frame, startConfig, endConfig, resolution, .002); ok {
+			maxSteps = max(maxSteps, steps)
+		}
 	}
 	return maxSteps, nil
 }

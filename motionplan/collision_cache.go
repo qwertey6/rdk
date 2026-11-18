@@ -58,6 +58,9 @@ type edgeResultValue struct {
 // LookupEdgeResult returns whether the edge between two configurations has been
 // previously verified collision-free. Returns (false, false) for "no cached result".
 // Caller hashes must be deterministic for the same inputs across calls.
+//
+// Deprecated: this API omits the checker, direction, resolution and endpoint policy.
+// Native planning uses a segment-scoped cache instead.
 func (c *CollisionCache) LookupEdgeResult(hashA, hashB uint64) (isClear, ok bool) {
 	if c == nil {
 		return false, false
@@ -73,6 +76,8 @@ func (c *CollisionCache) LookupEdgeResult(hashA, hashB uint64) (isClear, ok bool
 }
 
 // StoreEdgeResult records that an edge was found collision-free.
+//
+// Deprecated: use a cache scoped to the exact validation context instead.
 func (c *CollisionCache) StoreEdgeResult(hashA, hashB uint64, isClear bool) {
 	if c == nil {
 		return

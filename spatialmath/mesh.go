@@ -61,8 +61,8 @@ type Mesh struct {
 	// bvh is the bounding volume hierarchy for accelerated collision detection.
 	// Built lazily on first collision check via ensureBVH().
 	//
-	// An atomic pointer, rather than a sync.Once guarded field, so ResetCache can clear it while
-	// collision checks run. A reader keeps the tree it loaded even if a reset follows.
+	// Atomic publication lets concurrent readers reuse the immutable tree.
+	// ResetCache retains it; replacing mesh data invalidates it.
 	bvh        atomic.Pointer[bvhNode]
 	bvhBuildMu sync.Mutex
 
@@ -91,6 +91,8 @@ type Mesh struct {
 // the stable identity used for mesh-vs-mesh witness keying — two Mesh values
 // that share a *meshState are the "same logical mesh" for caching purposes.
 type meshState struct {
+	shapeHash     uint64
+	shapeHashOnce sync.Once
 	// id is a process-unique identifier assigned at construction. Used as a
 	// stable pair identity in the negative cache hash without resorting to
 	// unsafe.Pointer arithmetic.
@@ -1034,23 +1036,10 @@ func (m *Mesh) distanceFromMesh(other *Mesh) (float64, error) {
 	return bvhDistanceFromBVH(m.ensureBVH(), other.ensureBVH(), m.pose, other.pose)
 }
 
-// ResetCache clears the mesh's lazily-built collision state: the BVH, the
-// deduplicated vertex list, and the witness / negative caches living on the
-// shared *meshState. Intended for callers (e.g. the motion planner) that want
-// to release the memory held by these caches once a planning session is done.
-//
-// Because *meshState is shared across Transform-derived copies, clearing it
-// here is visible to all clones of this logical mesh. The per-instance bvh
-// and uniqueVerts on Transform-derived clones are not reset by this call;
-// resetting the original Mesh registered with the frame system is what frees
-// the BVH tree memory.
-//
-// Safe to call concurrently with collision checks — the cache is purely an
-// optimization, so racing readers may observe a torn view but cannot return a
-// wrong answer (they fall back to the BVH walk).
+// ResetCache clears transient witness and exact-pose caches shared across
+// transformed instances. Immutable BVH/vertex preparation lives with the mesh;
+// concurrent readers can retain that preparation while transient entries clear.
 func (m *Mesh) ResetCache() {
-	m.bvh.Store(nil)
-	m.uniqueVerts.Store(nil)
 	if m.state != nil {
 		m.state.witnesses.Clear()
 		m.state.geomWitness.Clear()
@@ -1147,6 +1136,9 @@ func (m *Mesh) UnmarshalJSON(data []byte) error {
 	m.rawBytesOnce = sync.Once{}
 	m.originalFilePath = mesh.originalFilePath
 	m.bvh.Store(nil)
+	m.uniqueVerts.Store(nil)
+	m.poseCacheOnce = sync.Once{}
+	m.state = mesh.state
 	return nil
 }
 
