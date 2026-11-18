@@ -1,23 +1,27 @@
 package motionplan
 
 import (
+	"fmt"
 	"math"
 	"sync"
 	"sync/atomic"
+
+	"golang.org/x/sync/singleflight"
 
 	"go.viam.com/rdk/spatialmath"
 )
 
 // CollisionCache holds planner-level temporal-coherence state for collision
 // queries within a single planning request. Owned by planContext and threaded
-// down through the constraint checker. Holds two pieces of state:
+// down through the constraint checker. Holds collision hints:
 //
 //  1. Geometry-pair "last-violated" hints — one slot per constraint type. When
 //     a constraint check finds (geomA, geomB) in collision, it stores that pair
 //     so the next call to the same constraint tries that pair first.
-//  2. Edge-result memoization for checkPath — RRT-Connect rewire and path
-//     smoothing re-check the same interpolated edges repeatedly; the verdict
-//     for collision-free edges is cached here.
+//
+// Native path validity is memoized separately by PlanSegmentContext with the
+// checker, direction, resolution and endpoint policy in its key. The legacy
+// endpoint-only methods below must not be used for that purpose.
 //
 // Per-mesh witness caches (the inner-loop temporal-coherence short-circuit)
 // live on spatialmath.Mesh.state, not here. Threading a cache through the
@@ -48,9 +52,7 @@ type edgeResultKey struct {
 	a, b uint64
 }
 
-// edgeResultValue records whether an edge was found collision-free. Only clear
-// results are cached — failed-edge results would need to be keyed by the buffer
-// and resolution used at the time, which varies across callers.
+// edgeResultValue is retained for the legacy endpoint-only cache API.
 type edgeResultValue struct {
 	isClear bool
 }
@@ -91,21 +93,27 @@ func (c *CollisionCache) StoreEdgeResult(hashA, hashB uint64, isClear bool) {
 // sdfRegistry caches voxel distance fields process-wide. A field depends only
 // on the static scene (keyed by the shape-aware spatialmath.GeometrySetHash),
 // never on the plan, and costs ~35-70ms plus a multi-MB grid allocation to
-// build - caching it per plan made every replan of an otherwise-trivial scene
-// pay that in full. Small LRU: each field can be tens of MB, and a scene whose
-// obstacles move between plans mints a new key every time.
+// build. Bound retained storage by bytes as well as entry count, so a sequence
+// of small recurring scenes need not rebuild fields just because it uses more
+// than eight keys. Changed poses/shapes still invalidate the key.
 type sdfRegistry struct {
-	mu      sync.Mutex
-	tick    uint64
-	entries map[uint64]*sdfRegistryEntry
+	mu              sync.Mutex
+	tick            uint64
+	entries         map[uint64]*sdfRegistryEntry
+	bytes, maxBytes int64
+	builds          singleflight.Group
 }
 
 type sdfRegistryEntry struct {
 	sdf      *spatialmath.VoxelSDF // nil records a scene the SDF cannot represent
 	lastUsed uint64
+	bytes    int64
 }
 
-const sdfRegistryCap = 8
+const (
+	sdfRegistryCap   = 128
+	sdfRegistryBytes = 512 << 20
+)
 
 var globalSDFRegistry = sdfRegistry{entries: map[uint64]*sdfRegistryEntry{}}
 
@@ -129,8 +137,17 @@ func (r *sdfRegistry) insert(key uint64, sdf *spatialmath.VoxelSDF) *spatialmath
 		return e.sdf
 	}
 	r.tick++
-	r.entries[key] = &sdfRegistryEntry{sdf: sdf, lastUsed: r.tick}
-	for len(r.entries) > sdfRegistryCap {
+	bytes := sdf.MemoryBytes() + 128
+	budget := r.maxBytes
+	if budget == 0 {
+		budget = sdfRegistryBytes
+	}
+	if bytes > budget {
+		return sdf
+	}
+	r.entries[key] = &sdfRegistryEntry{sdf: sdf, lastUsed: r.tick, bytes: bytes}
+	r.bytes += bytes
+	for len(r.entries) > sdfRegistryCap || r.bytes > budget {
 		var oldestKey uint64
 		oldest := uint64(math.MaxUint64)
 		for k, e := range r.entries {
@@ -138,6 +155,7 @@ func (r *sdfRegistry) insert(key uint64, sdf *spatialmath.VoxelSDF) *spatialmath
 				oldest, oldestKey = e.lastUsed, k
 			}
 		}
+		r.bytes -= r.entries[oldestKey].bytes
 		delete(r.entries, oldestKey)
 	}
 	return sdf
@@ -156,7 +174,17 @@ func (c *CollisionCache) SDFFor(static []spatialmath.Geometry) *spatialmath.Voxe
 	if sdf, ok := globalSDFRegistry.lookup(key); ok {
 		return sdf
 	}
-	return globalSDFRegistry.insert(key, spatialmath.NewVoxelSDF(static, sdfResolutionMM))
+	//nolint:errcheck // The build closure below always returns a nil error.
+	result, _, _ := globalSDFRegistry.builds.Do(fmt.Sprintf("%x", key), func() (interface{}, error) {
+		// Recheck after joining the flight: another caller may have finished
+		// between the initial miss and acquiring the build slot.
+		if sdf, ok := globalSDFRegistry.lookup(key); ok {
+			return sdf, nil
+		}
+		built := spatialmath.NewVoxelSDF(static, sdfResolutionMM)
+		return globalSDFRegistry.insert(key, built), nil
+	})
+	return result.(*spatialmath.VoxelSDF)
 }
 
 const sdfResolutionMM = 10.0

@@ -57,3 +57,22 @@ func TestSDFRegistryEviction(t *testing.T) {
 	_, ok = r.lookup(1)
 	test.That(t, ok, test.ShouldBeFalse)
 }
+
+func TestSDFRegistryByteBudget(t *testing.T) {
+	sdf := spatialmath.NewVoxelSDF(testStaticScene(t, r3.Vector{X: 50, Y: 80, Z: 80}), sdfResolutionMM)
+	test.That(t, sdf, test.ShouldNotBeNil)
+	entryBytes := sdf.MemoryBytes() + 128
+	r := sdfRegistry{entries: map[uint64]*sdfRegistryEntry{}, maxBytes: 2 * entryBytes}
+	r.insert(1, sdf)
+	r.insert(2, sdf)
+	r.lookup(1)
+	r.insert(3, sdf)
+	_, ok := r.lookup(2)
+	test.That(t, ok, test.ShouldBeFalse)
+	test.That(t, r.bytes, test.ShouldEqual, 2*entryBytes)
+	// An oversized entry is served to its caller without evicting useful fields.
+	r.maxBytes = entryBytes - 1
+	r.insert(4, sdf)
+	_, ok = r.lookup(4)
+	test.That(t, ok, test.ShouldBeFalse)
+}
