@@ -587,12 +587,14 @@ func probeTightSeed(
 	psc *PlanSegmentContext,
 	sss *SolutionSolvingState,
 	minFunc ik.CostFunc,
+	batchCost ik.BatchCostFunc,
 	logger logging.Logger,
 ) ([]*node, bool) {
 	probe, err := ik.CreateNloptSolver(logger.Sublogger("ik-probe"), 1, true, true, 0)
 	if err != nil {
 		return nil, false
 	}
+	probe.SetBatchCost(batchCost)
 	tightIdx := len(sss.LinearSeeds) - 1
 
 	// Buffered to size 1 so NloptIK.Solve's send doesn't block; with iter=1 we
@@ -641,14 +643,14 @@ func getSolutions(ctx context.Context, psc *PlanSegmentContext, logger logging.L
 		return nil, err
 	}
 
-	minFunc := psc.pc.LinearizeFSMetric(psc.pc.planOpts.GetGoalMetric(psc.goal))
+	minFunc, batchCost := psc.pc.goalCost(psc.goal)
 
 	// If we're already close to the goal and didn't add smart seeds, the tight
 	// 5% seed is usually all we need. Try one nlopt iteration on it inline —
 	// no goroutines, no time budget — and if it lands a fully-validated
 	// solution skip the multi-thread search entirely. Otherwise fall through.
 	if !solvingState.doingSmartSeeds && solvingState.goodCost <= 1 {
-		if sols, ok := probeTightSeed(ctx, psc, solvingState, minFunc, logger); ok {
+		if sols, ok := probeTightSeed(ctx, psc, solvingState, minFunc, batchCost, logger); ok {
 			return sols, nil
 		}
 	}
@@ -686,6 +688,7 @@ func getSolutions(ctx context.Context, psc *PlanSegmentContext, logger logging.L
 		return nil, err
 	}
 
+	solver.SetBatchCost(batchCost)
 	var solveError error
 	var solveMeta []ik.SeedSolveMetaData
 	var solveErrorLock sync.Mutex

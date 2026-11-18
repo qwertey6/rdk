@@ -110,8 +110,11 @@ func (q *DualQuaternion) ToProtobuf() *commonpb.Pose {
 // We intentionally do not return the resulting dual quaternion, because we do not want to mix dq's representing
 // transformations and ones representing pure points.
 func (q *DualQuaternion) Point() r3.Vector {
-	tQuat := dualquat.Mul(q.Number, dualquat.Conj(q.Number)).Dual
-	return r3.Vector{tQuat.Imag, tQuat.Jmag, tQuat.Kmag}
+	// The real quaternion of the full dual product is unused. Keep the same
+	// quaternion operations for the dual part, including their rounding.
+	c := dualquat.Conj(q.Number)
+	p := quat.Add(quat.Mul(q.Real, c.Dual), quat.Mul(q.Dual, c.Real))
+	return r3.Vector{p.Imag, p.Jmag, p.Kmag}
 }
 
 // Orientation returns the rotation quaternion as an Orientation.
@@ -148,13 +151,20 @@ func (q *DualQuaternion) Transformation(by dualquat.Number) dualquat.Number {
 	} else {
 		newReal = quat.Mul(q.Real, by.Real)
 	}
-	// Multiplication is faster than division. Thus if this is hit, it is faster to divide once and multiply four times.
-	// However, if this is not hit, it may be a wash. The branch predictor won't save us as the following lines rely on newReal.
-	if vecLen := 1 / quat.Abs(newReal); vecLen-1 > 1e-10 || vecLen-1 < -1e-10 {
-		newReal.Real *= vecLen
-		newReal.Imag *= vecLen
-		newReal.Jmag *= vecLen
-		newReal.Kmag *= vecLen
+	// Rigid transforms normally produce a unit quaternion. This conservative
+	// squared-norm window is well inside the existing 1e-10 normalization
+	// threshold, including roundoff in both norm calculations. It avoids the
+	// robust norm's divisions and square root when that calculation would leave
+	// every component unchanged. Boundary, extreme and non-finite values retain
+	// the original normalization arithmetic.
+	norm2 := newReal.Real*newReal.Real + newReal.Imag*newReal.Imag + newReal.Jmag*newReal.Jmag + newReal.Kmag*newReal.Kmag
+	if !(norm2 >= 1-1e-12 && norm2 <= 1+1e-12) {
+		if vecLen := 1 / quat.Abs(newReal); vecLen-1 > 1e-10 || vecLen-1 < -1e-10 {
+			newReal.Real *= vecLen
+			newReal.Imag *= vecLen
+			newReal.Jmag *= vecLen
+			newReal.Kmag *= vecLen
+		}
 	}
 
 	if q.Dual.Real == 0 && q.Dual.Imag == 0 && q.Dual.Jmag == 0 && q.Dual.Kmag == 0 {

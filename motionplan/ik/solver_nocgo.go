@@ -26,6 +26,9 @@ func CreateNloptSolver(
 // NloptIK mimics the type in the cgo compiled code.
 type NloptIK struct{}
 
+// SetBatchCost is a no-op when IK is unavailable.
+func (*NloptIK) SetBatchCost(BatchCostFunc) {}
+
 // Solve refuses to solve problems without cgo.
 func (ik *NloptIK) Solve(ctx context.Context,
 	solutionChan chan<- *Solution,
