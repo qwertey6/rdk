@@ -167,7 +167,24 @@ func (nss *nloptSeedState) getMinFunc(ctx context.Context, minFunc CostFunc, ite
 	// Gradient is, under the hood, a unsafe C structure that we are meant to mutate in place.
 	return func(checkVals, gradient []float64) float64 {
 		*iteration++
+		// Stop on the optimizer's own callback thread. Waiting until Optimize
+		// returns lets a losing worker delay the winning plan by an entire solve.
+		// Infinite objective values do not stop NLopt reliably: use its stop API.
+		stopCanceled := func() bool {
+			if ctx.Err() == nil {
+				return false
+			}
+			_ = nss.opt.ForceStop() //nolint:errcheck // Best-effort stop; SolveOnce returns the context cancellation.
+			clear(gradient)
+			return true
+		}
+		if stopCanceled() {
+			return 0
+		}
 		dist := minFunc(ctx, checkVals)
+		if stopCanceled() {
+			return 0
+		}
 		if len(gradient) > 0 {
 			// Yes, the for loop below is logically equivalent to not having this if statement. But CPU branch prediction means having the
 			// if statement is faster.
@@ -184,6 +201,9 @@ func (nss *nloptSeedState) getMinFunc(ctx context.Context, minFunc CostFunc, ite
 				// off the upper bound is not -jumpVal, and anything left over corrupts every later component.
 				gradient[i] = (dist2 - dist) / (checkVals[i] - orig)
 				checkVals[i] = orig
+				if stopCanceled() {
+					return 0
+				}
 			}
 		}
 		if nss.logger.GetLevel() <= logging.DEBUG {
@@ -211,6 +231,9 @@ func (ik *NloptIK) SolveOnce(ctx context.Context, minFunc CostFunc,
 	defer ss.opt.Destroy()
 
 	solutionRaw, result, nloptErr := ss.opt.Optimize(ss.seed)
+	if err := ctx.Err(); err != nil {
+		return nil, err
+	}
 	if nloptErr != nil {
 		// "nlopt: FAILURE" just *happens* sometimes in nonlinear randomized
 		// problems (see Solve); treat it as no solution rather than an error.
@@ -306,6 +329,9 @@ func (ik *NloptIK) Solve(ctx context.Context,
 				result, nloptErr, logging.FloatArrayFormat{"", solutionRaw})
 		}
 
+		if ctx.Err() != nil {
+			return solutionsFound, meta, nil
+		}
 		if nloptErr != nil {
 			meta[seedNumberRanged].Errors++
 			// This just *happens* sometimes due to weirdnesses in nonlinear randomized problems.

@@ -658,6 +658,7 @@ func getSolutions(ctx context.Context, psc *PlanSegmentContext, logger logging.L
 
 	solutionGen := make(chan *ik.Solution, defaultNumThreads)
 	defer func() {
+		cancel()
 		// In lieu of creating a separate WaitGroup to wait on before returning, we simply wait to
 		// see the `solutionGen` channel get closed to know that the goroutine we spawned has
 		// finished.

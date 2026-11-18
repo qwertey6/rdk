@@ -8,6 +8,7 @@ import (
 	"math"
 	"math/rand"
 	"strings"
+	"sync"
 
 	"go.viam.com/utils/trace"
 
@@ -140,6 +141,17 @@ type PlanSegmentContext struct {
 	// the frame system (a door whose fixed transform is updated between plans,
 	// a tracked fixture) is invisible to inputs alone.
 	staticGeomHash uint64
+
+	// Edge validity belongs to this segment's constraints. Direction and the
+	// endpoint policy also matter: a prefix check does not certify its end.
+	checkedEdges sync.Map // checkedEdge -> struct{}
+}
+
+type checkedEdge struct {
+	start, end uint64
+	resolution float64
+	checkFinal bool
+	checker    *motionplan.ConstraintChecker
 }
 
 // NewPlanSegmentContext returns a new PlanSegmentContext.
@@ -223,16 +235,13 @@ func NewPlanSegmentContext(ctx context.Context, pc *PlanContext, start *referenc
 func (psc *PlanSegmentContext) CheckPath(
 	ctx context.Context, start, end *referenceframe.LinearInputs, checkFinal bool, outPath *PathFeedback,
 ) error {
-	// Edge-result memoization: RRT-Connect rewire and path smoothing re-check
-	// the same (start, end) edges constantly. Skip the full interpolated sweep
-	// when the cache has already verified this edge collision-free under the
-	// same checkFinal setting. Negative results aren't cached — they depend on
-	// the failure step, which depends on resolution and buffer.
-	cache := psc.pc.collisionCache
-	hashA := hashLinearInputs(start)
-	hashB := hashLinearInputs(end)
-	if cache != nil && hashA != 0 && hashB != 0 {
-		if isClear, ok := cache.LookupEdgeResult(hashA, hashB); ok && isClear {
+	if err := ctx.Err(); err != nil {
+		return err
+	}
+	hashA, hashB := hashLinearInputs(start), hashLinearInputs(end)
+	key := checkedEdge{hashA, hashB, psc.pc.planOpts.Resolution, checkFinal, psc.Checker}
+	if hashA != 0 && hashB != 0 {
+		if _, ok := psc.checkedEdges.Load(key); ok {
 			return nil
 		}
 	}
@@ -247,8 +256,8 @@ func (psc *PlanSegmentContext) CheckPath(
 		psc.pc.planOpts.Resolution,
 		checkFinal,
 	)
-	if err == nil && cache != nil && hashA != 0 && hashB != 0 {
-		cache.StoreEdgeResult(hashA, hashB, true)
+	if err == nil && hashA != 0 && hashB != 0 {
+		psc.checkedEdges.Store(key, struct{}{})
 	}
 
 	if err != nil && outPath != nil {

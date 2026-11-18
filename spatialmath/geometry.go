@@ -56,10 +56,10 @@ type Geometry interface {
 	json.Marshaler
 }
 
-// GeometrySetHash fingerprints a geometry set by label, pose, and shape (via
-// Geometry.Hash, which folds in type-specific dimensions - a cache keyed on
-// this hash must not serve a stale entry to a same-named, same-posed geometry
-// whose size changed). The per-geometry hashes are combined commutatively
+// GeometrySetHash fingerprints a geometry set by label, pose, and shape.
+// Built-in shapes use every dimension and mesh vertex at float64 precision;
+// Geometry.Hash is deliberately coarse and is not a sufficient scene-cache key.
+// The per-geometry hashes are combined commutatively
 // because callers assemble the set from map iteration - the same set must hash
 // identically regardless of geometry order.
 func GeometrySetHash(geoms []Geometry) uint64 {
@@ -79,10 +79,61 @@ func GeometrySetHash(geoms []Geometry) uint64 {
 		for _, f := range [7]float64{pt.X, pt.Y, pt.Z, q.Real, q.Imag, q.Jmag, q.Kmag} {
 			mix(math.Float64bits(f))
 		}
-		mix(uint64(g.Hash()))
+		mix(geometryShapeHash(g))
 		total += h
 	}
 	return total
+}
+
+func geometryShapeHash(g Geometry) uint64 {
+	h := uint64(0xcbf29ce484222325)
+	mix := func(v uint64) { h = (h ^ v) * 0x100000001b3 }
+	values := func(vs ...float64) {
+		for _, v := range vs {
+			mix(math.Float64bits(v))
+		}
+	}
+	triangle := func(t *Triangle) { values(t.p0.X, t.p0.Y, t.p0.Z, t.p1.X, t.p1.Y, t.p1.Z, t.p2.X, t.p2.Y, t.p2.Z) }
+	switch shape := g.(type) {
+	case *box:
+		mix(1)
+		values(shape.halfSize[:]...)
+	case *sphere:
+		mix(2)
+		values(shape.radius)
+	case *capsule:
+		mix(3)
+		values(shape.radius, shape.length)
+	case *Cylinder:
+		mix(4)
+		values(shape.radius, shape.height)
+		if shape.capped {
+			mix(1)
+		}
+	case *point:
+		mix(5)
+	case *Triangle:
+		mix(6)
+		triangle(shape)
+	case *Mesh:
+		compute := func() uint64 {
+			mix(7)
+			mix(uint64(len(shape.triangles)))
+			for _, t := range shape.triangles {
+				triangle(t)
+			}
+			return h
+		}
+		if shape.state == nil {
+			return compute()
+		}
+		shape.state.shapeHashOnce.Do(func() { shape.state.shapeHash = compute() })
+		return shape.state.shapeHash
+	default:
+		mix(8)
+		mix(uint64(g.Hash()))
+	}
+	return h
 }
 
 // GeometryType defines what geometry representations are known.
