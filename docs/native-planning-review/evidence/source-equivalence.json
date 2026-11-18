@@ -1,0 +1,128 @@
+{
+  "initial_timed_to_formatted": [
+    {
+      "Variant": "pr1",
+      "TimedCommit": "0831280c9",
+      "ChangedRuntimeFiles": [
+        "motionplan/collision_cache.go",
+        "motionplan/ik/nlopt.go"
+      ],
+      "ChangedTestFiles": [
+        "motionplan/armplanning/search_lifecycle_test.go"
+      ],
+      "RuntimeASTEqual": true
+    },
+    {
+      "Variant": "pr2",
+      "TimedCommit": "9b210c6fa",
+      "ChangedRuntimeFiles": [
+        "motionplan/collision_cache.go",
+        "motionplan/ik/nlopt.go"
+      ],
+      "ChangedTestFiles": [
+        "motionplan/armplanning/accelerated_goal_test.go",
+        "motionplan/armplanning/search_lifecycle_test.go",
+        "spatialmath/dualquaternion_point_test.go"
+      ],
+      "RuntimeASTEqual": true
+    },
+    {
+      "Variant": "pr3",
+      "TimedCommit": "1d64145d4",
+      "ChangedRuntimeFiles": [
+        "motionplan/collision.go",
+        "motionplan/collision_cache.go",
+        "motionplan/constraint_checker.go",
+        "motionplan/cover_state.go",
+        "motionplan/ik/nlopt.go",
+        "motionplan/segment_samples.go",
+        "referenceframe/motion_bounds.go",
+        "referenceframe/prepared_geometries.go",
+        "spatialmath/geometry_buffer.go"
+      ],
+      "ChangedTestFiles": [
+        "motionplan/armplanning/accelerated_goal_test.go",
+        "motionplan/armplanning/search_lifecycle_test.go",
+        "motionplan/collision_allowance_masks_test.go",
+        "motionplan/collision_hint_reuse_test.go",
+        "motionplan/segment_samples_test.go",
+        "motionplan/shared_geometry_fk_test.go",
+        "referenceframe/motion_bound_numerics_test.go",
+        "referenceframe/prepared_geometries_test.go",
+        "referenceframe/shared_geometry_fk_test.go",
+        "spatialmath/dualquaternion_point_test.go"
+      ],
+      "RuntimeASTEqual": true
+    },
+    {
+      "Variant": "pr4",
+      "TimedCommit": "f9f894eb9",
+      "ChangedRuntimeFiles": [
+        "motionplan/armplanning/finishing_budget.go",
+        "motionplan/armplanning/shortcut_partition.go",
+        "motionplan/collision.go",
+        "motionplan/collision_cache.go",
+        "motionplan/constraint_checker.go",
+        "motionplan/cover_state.go",
+        "motionplan/exact_state_cache.go",
+        "motionplan/ik/nlopt.go",
+        "motionplan/segment_samples.go",
+        "referenceframe/motion_bounds.go",
+        "referenceframe/prepared_geometries.go",
+        "spatialmath/geometry_buffer.go"
+      ],
+      "ChangedTestFiles": [
+        "motionplan/armplanning/accelerated_goal_test.go",
+        "motionplan/armplanning/guarded_finishing_test.go",
+        "motionplan/armplanning/input_frame_smoothing_test.go",
+        "motionplan/armplanning/search_lifecycle_test.go",
+        "motionplan/armplanning/shortcut_partition_test.go",
+        "motionplan/armplanning/shortcut_quality_test.go",
+        "motionplan/collision_allowance_masks_test.go",
+        "motionplan/collision_hint_reuse_test.go",
+        "motionplan/segment_samples_test.go",
+        "motionplan/shared_geometry_fk_test.go",
+        "motionplan/shortcut_geometry_test.go",
+        "referenceframe/motion_bound_numerics_test.go",
+        "referenceframe/prepared_geometries_test.go",
+        "referenceframe/shared_geometry_fk_test.go",
+        "spatialmath/dualquaternion_point_test.go"
+      ],
+      "RuntimeASTEqual": true
+    }
+  ],
+  "formatted_to_final": {
+    "pr3": {
+      "from": "fa38f9a55e9a5c321c24a15c7a75e960d9d461ed",
+      "to": "899cedca5585f59b8d18b7ca2fc9f3941fb472e3",
+      "runtime_byte_identical": true,
+      "remaining_changes": ".../armplanning/clearance_regression_test.go       | 39 +++++++++++++++\n .../data/native-clearance-regression-path.json     | 57 ++++++++++++++++++++++\n .../data/native-clearance-regression.json          |  1 +\n 3 files changed, 97 insertions(+)"
+    },
+    "pr4": {
+      "from": "6fa5952dada71c426386bf6226fa5e8f1c0ba218",
+      "to": "76654f793a7559db83e22d81e46fee807bc84439",
+      "runtime_byte_identical": true,
+      "remaining_changes": ".../armplanning/clearance_regression_test.go       | 39 +++++++++++++++\n .../data/native-clearance-regression-path.json     | 57 ++++++++++++++++++++++\n .../data/native-clearance-regression.json          |  1 +\n 3 files changed, 97 insertions(+)"
+    }
+  },
+  "corrected_binary_to_final": {
+    "pr1": {
+      "binary_build_commit": "131ae44d060244d631f68b9cdd3793cf6c25d7d2",
+      "final_commit": "a2bc4d795553fdd4910dde49e992e79a24fccd9e",
+      "runtime_byte_identical": true,
+      "remaining_changes": "motionplan/constraint_test.go | 9 +++++----\n 1 file changed, 5 insertions(+), 4 deletions(-)"
+    },
+    "pr2": {
+      "binary_build_commit": "516cef2a24d2cd8d50f5e491ee95d2ef94986cfb",
+      "final_commit": "6a1590932f85add9d1ba3e5f231ead8fbe2de82c",
+      "runtime_byte_identical": true,
+      "remaining_changes": "motionplan/constraint_test.go | 9 +++++----\n 1 file changed, 5 insertions(+), 4 deletions(-)"
+    },
+    "pr3": {
+      "binary_build_commit": "92ae0360dc9055d277a050758f760a9d9f185126",
+      "final_commit": "899cedca5585f59b8d18b7ca2fc9f3941fb472e3",
+      "runtime_byte_identical": true,
+      "remaining_changes": ""
+    }
+  }
+}

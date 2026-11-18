@@ -1,0 +1,1937 @@
+{
+  "1-main": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 108,
+      "accepted_rate": 0.9818181818181818,
+      "status": {
+        "solved": 108,
+        "validation_failed": 2
+      },
+      "total_s": 15.055470454,
+      "completion_ms": {
+        "median": 55.1348335,
+        "p95": 474.656292,
+        "p99": 907.85375,
+        "max": 4160.647333
+      },
+      "accepted_ms": {
+        "median": 54.2861665,
+        "p95": 354.829042,
+        "p99": 907.85375,
+        "max": 4160.647333
+      },
+      "audit_s": 2.922217127,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 1,
+        "GoalsCBIRRTSolved": 13
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1,
+        "benchmark segment 0: RDK rejected edge 36 sample 2/6: robot constraint: violation between coffee-claws-middle_origin and glass geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "1-original": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 107,
+      "accepted_rate": 0.9727272727272728,
+      "status": {
+        "solved": 107,
+        "validation_failed": 3
+      },
+      "total_s": 15.184551662,
+      "completion_ms": {
+        "median": 65.9939995,
+        "p95": 389.643125,
+        "p99": 1020.070333,
+        "max": 4080.7465
+      },
+      "accepted_ms": {
+        "median": 63.275084,
+        "p95": 389.643125,
+        "p99": 1020.070333,
+        "max": 4080.7465
+      },
+      "audit_s": 3.20288746,
+      "thresholds": {
+        "1": 2,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsDirectSolved": 2927,
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 15
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 2 sample 178/200: obstacle constraint: violation between arm:wrist_link and blocker geometries": 1,
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1,
+        "benchmark segment 0: RDK rejected edge 41 sample 1/5: robot constraint: violation between coffee-claws-middle_origin and glass geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "1-pr1": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 108,
+      "accepted_rate": 0.9818181818181818,
+      "status": {
+        "solved": 108,
+        "validation_failed": 2
+      },
+      "total_s": 15.603711533,
+      "completion_ms": {
+        "median": 56.70975,
+        "p95": 385.189583,
+        "p99": 1186.581625,
+        "max": 4301.939125
+      },
+      "accepted_ms": {
+        "median": 56.332,
+        "p95": 385.189583,
+        "p99": 1186.581625,
+        "max": 4301.939125
+      },
+      "audit_s": 3.323564882,
+      "thresholds": {
+        "1": 2,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 1,
+        "GoalsCBIRRTSolved": 13
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1,
+        "benchmark segment 0: RDK rejected edge 36 sample 2/6: robot constraint: violation between coffee-claws-middle_origin and glass geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "1-pr2": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 108,
+      "accepted_rate": 0.9818181818181818,
+      "status": {
+        "solved": 108,
+        "validation_failed": 2
+      },
+      "total_s": 13.964061044,
+      "completion_ms": {
+        "median": 49.9977915,
+        "p95": 456.681458,
+        "p99": 778.344333,
+        "max": 3851.907125
+      },
+      "accepted_ms": {
+        "median": 48.563396,
+        "p95": 335.2335,
+        "p99": 651.229792,
+        "max": 3851.907125
+      },
+      "audit_s": 2.850243005,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 1,
+        "GoalsCBIRRTSolved": 13
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1,
+        "benchmark segment 0: RDK rejected edge 397 sample 2/4: robot constraint: violation between glass and serving-area-shield_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "1-pr3": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 110,
+      "accepted_rate": 1.0,
+      "status": {
+        "solved": 110
+      },
+      "total_s": 16.07346634,
+      "completion_ms": {
+        "median": 52.2729795,
+        "p95": 469.49875,
+        "p99": 1110.73325,
+        "max": 4062.714709
+      },
+      "accepted_ms": {
+        "median": 52.2729795,
+        "p95": 469.49875,
+        "p99": 1110.73325,
+        "max": 4062.714709
+      },
+      "audit_s": 3.156580001,
+      "thresholds": {
+        "1": 2,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {}
+    },
+    "process_exit": 0
+  },
+  "1-pr4": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 110,
+      "accepted_rate": 1.0,
+      "status": {
+        "solved": 110
+      },
+      "total_s": 13.866903333,
+      "completion_ms": {
+        "median": 51.205792,
+        "p95": 324.656333,
+        "p99": 836.71875,
+        "max": 3751.225833
+      },
+      "accepted_ms": {
+        "median": 51.205792,
+        "p95": 324.656333,
+        "p99": 836.71875,
+        "max": 3751.225833
+      },
+      "audit_s": 3.14295275,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {}
+    },
+    "process_exit": 0
+  },
+  "2-main": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 109,
+      "accepted_rate": 0.990909090909091,
+      "status": {
+        "solved": 109,
+        "validation_failed": 1
+      },
+      "total_s": 15.803353204,
+      "completion_ms": {
+        "median": 55.632,
+        "p95": 484.210583,
+        "p99": 1184.622042,
+        "max": 4253.519625
+      },
+      "accepted_ms": {
+        "median": 54.724959,
+        "p95": 484.210583,
+        "p99": 1184.622042,
+        "max": 4253.519625
+      },
+      "audit_s": 2.986877036,
+      "thresholds": {
+        "1": 2,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "2-original": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 109,
+      "accepted_rate": 0.990909090909091,
+      "status": {
+        "solved": 109,
+        "validation_failed": 1
+      },
+      "total_s": 15.808861994,
+      "completion_ms": {
+        "median": 66.1424165,
+        "p95": 344.283583,
+        "p99": 1507.283208,
+        "max": 4422.963375
+      },
+      "accepted_ms": {
+        "median": 66.018625,
+        "p95": 344.283583,
+        "p99": 1507.283208,
+        "max": 4422.963375
+      },
+      "audit_s": 3.30350846,
+      "thresholds": {
+        "1": 3,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsDirectSolved": 2927,
+        "GoalsNudgeSolved": 6,
+        "GoalsRoadmapSolved": 1,
+        "GoalsCBIRRTSolved": 13
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "2-pr1": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 106,
+      "accepted_rate": 0.9636363636363636,
+      "status": {
+        "solved": 106,
+        "validation_failed": 4
+      },
+      "total_s": 15.246997201,
+      "completion_ms": {
+        "median": 55.991437000000005,
+        "p95": 444.013709,
+        "p99": 903.543334,
+        "max": 4420.907375
+      },
+      "accepted_ms": {
+        "median": 53.7948955,
+        "p95": 444.013709,
+        "p99": 903.543334,
+        "max": 4420.907375
+      },
+      "audit_s": 2.927338205,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 2 sample 178/200: obstacle constraint: violation between arm:wrist_link and blocker geometries": 1,
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1,
+        "benchmark segment 0: RDK rejected edge 229 sample 2/3: robot constraint: violation between cup and ice-maker-mid_origin geometries": 1,
+        "benchmark segment 0: RDK rejected edge 49 sample 3/4: robot constraint: violation between coffee-claws-middle_origin and fridge-door-interior_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "2-pr2": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 109,
+      "accepted_rate": 0.990909090909091,
+      "status": {
+        "solved": 109,
+        "validation_failed": 1
+      },
+      "total_s": 13.981549667,
+      "completion_ms": {
+        "median": 48.2103745,
+        "p95": 441.689542,
+        "p99": 1081.691542,
+        "max": 3830.5705
+      },
+      "accepted_ms": {
+        "median": 48.137083,
+        "p95": 441.689542,
+        "p99": 1081.691542,
+        "max": 3830.5705
+      },
+      "audit_s": 2.754792121,
+      "thresholds": {
+        "1": 2,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 1,
+        "GoalsCBIRRTSolved": 13
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "2-pr3": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 110,
+      "accepted_rate": 1.0,
+      "status": {
+        "solved": 110
+      },
+      "total_s": 15.148838753,
+      "completion_ms": {
+        "median": 52.470792,
+        "p95": 467.049708,
+        "p99": 1094.458667,
+        "max": 3721.767084
+      },
+      "accepted_ms": {
+        "median": 52.470792,
+        "p95": 467.049708,
+        "p99": 1094.458667,
+        "max": 3721.767084
+      },
+      "audit_s": 3.076610206,
+      "thresholds": {
+        "1": 2,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {}
+    },
+    "process_exit": 0
+  },
+  "2-pr4": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 110,
+      "accepted_rate": 1.0,
+      "status": {
+        "solved": 110
+      },
+      "total_s": 14.813247584,
+      "completion_ms": {
+        "median": 52.4614995,
+        "p95": 421.079167,
+        "p99": 861.183417,
+        "max": 3884.703708
+      },
+      "accepted_ms": {
+        "median": 52.4614995,
+        "p95": 421.079167,
+        "p99": 861.183417,
+        "max": 3884.703708
+      },
+      "audit_s": 2.970024001,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {}
+    },
+    "process_exit": 0
+  },
+  "3-main": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 108,
+      "accepted_rate": 0.9818181818181818,
+      "status": {
+        "solved": 108,
+        "validation_failed": 2
+      },
+      "total_s": 15.056550703,
+      "completion_ms": {
+        "median": 55.416895999999994,
+        "p95": 348.862125,
+        "p99": 1193.900167,
+        "max": 4148.71275
+      },
+      "accepted_ms": {
+        "median": 54.7042495,
+        "p95": 348.862125,
+        "p99": 1193.900167,
+        "max": 4148.71275
+      },
+      "audit_s": 3.062532966,
+      "thresholds": {
+        "1": 2,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 2 sample 178/200: obstacle constraint: violation between arm:wrist_link and blocker geometries": 1,
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "3-original": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 109,
+      "accepted_rate": 0.990909090909091,
+      "status": {
+        "solved": 109,
+        "validation_failed": 1
+      },
+      "total_s": 14.75032521,
+      "completion_ms": {
+        "median": 66.630687,
+        "p95": 382.311833,
+        "p99": 738.103334,
+        "max": 4140.585708
+      },
+      "accepted_ms": {
+        "median": 65.608333,
+        "p95": 382.311833,
+        "p99": 738.103334,
+        "max": 4140.585708
+      },
+      "audit_s": 3.37365183,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsDirectSolved": 2927,
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 1,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "3-pr1": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 107,
+      "accepted_rate": 0.9727272727272728,
+      "status": {
+        "solved": 107,
+        "validation_failed": 3
+      },
+      "total_s": 14.889521201,
+      "completion_ms": {
+        "median": 55.191979,
+        "p95": 493.010834,
+        "p99": 841.465875,
+        "max": 4116.748375
+      },
+      "accepted_ms": {
+        "median": 53.188458,
+        "p95": 401.439583,
+        "p99": 743.498916,
+        "max": 4116.748375
+      },
+      "audit_s": 2.922373671,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 2 sample 178/200: obstacle constraint: violation between arm:wrist_link and blocker geometries": 1,
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1,
+        "benchmark segment 0: RDK rejected edge 397 sample 2/4: robot constraint: violation between glass and serving-area-shield_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "3-pr2": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 109,
+      "accepted_rate": 0.990909090909091,
+      "status": {
+        "solved": 109,
+        "validation_failed": 1
+      },
+      "total_s": 13.462501669,
+      "completion_ms": {
+        "median": 46.7619375,
+        "p95": 450.040958,
+        "p99": 718.0705,
+        "max": 3742.275542
+      },
+      "accepted_ms": {
+        "median": 46.275083,
+        "p95": 450.040958,
+        "p99": 718.0705,
+        "max": 3742.275542
+      },
+      "audit_s": 2.815355007,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 1,
+        "GoalsCBIRRTSolved": 13
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "3-pr3": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 110,
+      "accepted_rate": 1.0,
+      "status": {
+        "solved": 110
+      },
+      "total_s": 14.872159375,
+      "completion_ms": {
+        "median": 52.048042,
+        "p95": 441.565,
+        "p99": 991.273084,
+        "max": 3789.3595
+      },
+      "accepted_ms": {
+        "median": 52.048042,
+        "p95": 441.565,
+        "p99": 991.273084,
+        "max": 3789.3595
+      },
+      "audit_s": 2.963236824,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {}
+    },
+    "process_exit": 0
+  },
+  "3-pr4": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 110,
+      "accepted_rate": 1.0,
+      "status": {
+        "solved": 110
+      },
+      "total_s": 13.881863287,
+      "completion_ms": {
+        "median": 53.347958,
+        "p95": 359.363625,
+        "p99": 746.210375,
+        "max": 3744.720209
+      },
+      "accepted_ms": {
+        "median": 53.347958,
+        "p95": 359.363625,
+        "p99": 746.210375,
+        "max": 3744.720209
+      },
+      "audit_s": 3.177944448,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {}
+    },
+    "process_exit": 0
+  },
+  "4-main": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 108,
+      "accepted_rate": 0.9818181818181818,
+      "status": {
+        "solved": 108,
+        "validation_failed": 2
+      },
+      "total_s": 14.791839085,
+      "completion_ms": {
+        "median": 55.0687085,
+        "p95": 437.471166,
+        "p99": 1013.904459,
+        "max": 4137.990791
+      },
+      "accepted_ms": {
+        "median": 54.233479,
+        "p95": 352.539208,
+        "p99": 744.237875,
+        "max": 4137.990791
+      },
+      "audit_s": 2.966159626,
+      "thresholds": {
+        "1": 2,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 1,
+        "GoalsCBIRRTSolved": 13
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1,
+        "benchmark segment 0: RDK rejected edge 397 sample 2/4: robot constraint: violation between glass and serving-area-shield_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "4-original": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 109,
+      "accepted_rate": 0.990909090909091,
+      "status": {
+        "solved": 109,
+        "validation_failed": 1
+      },
+      "total_s": 15.186431995,
+      "completion_ms": {
+        "median": 66.352604,
+        "p95": 385.956667,
+        "p99": 947.63175,
+        "max": 4267.000666
+      },
+      "accepted_ms": {
+        "median": 65.792708,
+        "p95": 385.956667,
+        "p99": 947.63175,
+        "max": 4267.000666
+      },
+      "audit_s": 3.491738793,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsDirectSolved": 2927,
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 1,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "4-pr1": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 109,
+      "accepted_rate": 0.990909090909091,
+      "status": {
+        "solved": 109,
+        "validation_failed": 1
+      },
+      "total_s": 14.90567263,
+      "completion_ms": {
+        "median": 56.456208000000004,
+        "p95": 411.745542,
+        "p99": 945.444209,
+        "max": 4116.07775
+      },
+      "accepted_ms": {
+        "median": 56.263416,
+        "p95": 411.745542,
+        "p99": 945.444209,
+        "max": 4116.07775
+      },
+      "audit_s": 3.128029872,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "4-pr2": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 107,
+      "accepted_rate": 0.9727272727272728,
+      "status": {
+        "solved": 107,
+        "validation_failed": 3
+      },
+      "total_s": 13.611863627,
+      "completion_ms": {
+        "median": 47.413729000000004,
+        "p95": 452.240208,
+        "p99": 676.829875,
+        "max": 3910.270959
+      },
+      "accepted_ms": {
+        "median": 47.256041,
+        "p95": 390.870209,
+        "p99": 617.22075,
+        "max": 3910.270959
+      },
+      "audit_s": 2.689403455,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 2 sample 178/200: obstacle constraint: violation between arm:wrist_link and blocker geometries": 1,
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1,
+        "benchmark segment 0: RDK rejected edge 397 sample 2/4: robot constraint: violation between glass and serving-area-shield_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "4-pr3": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 110,
+      "accepted_rate": 1.0,
+      "status": {
+        "solved": 110
+      },
+      "total_s": 14.789354829,
+      "completion_ms": {
+        "median": 50.6793335,
+        "p95": 444.246375,
+        "p99": 979.165833,
+        "max": 3701.696917
+      },
+      "accepted_ms": {
+        "median": 50.6793335,
+        "p95": 444.246375,
+        "p99": 979.165833,
+        "max": 3701.696917
+      },
+      "audit_s": 3.067077957,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {}
+    },
+    "process_exit": 0
+  },
+  "4-pr4": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 110,
+      "accepted_rate": 1.0,
+      "status": {
+        "solved": 110
+      },
+      "total_s": 14.485246333,
+      "completion_ms": {
+        "median": 52.343625,
+        "p95": 412.497958,
+        "p99": 992.279584,
+        "max": 3881.477875
+      },
+      "accepted_ms": {
+        "median": 52.343625,
+        "p95": 412.497958,
+        "p99": 992.279584,
+        "max": 3881.477875
+      },
+      "audit_s": 3.011358751,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {}
+    },
+    "process_exit": 0
+  },
+  "5-main": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 108,
+      "accepted_rate": 0.9818181818181818,
+      "status": {
+        "solved": 108,
+        "validation_failed": 2
+      },
+      "total_s": 14.696701752,
+      "completion_ms": {
+        "median": 54.7187495,
+        "p95": 474.344125,
+        "p99": 848.671167,
+        "max": 4194.742333
+      },
+      "accepted_ms": {
+        "median": 54.509729,
+        "p95": 474.344125,
+        "p99": 848.671167,
+        "max": 4194.742333
+      },
+      "audit_s": 3.121485413,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 1,
+        "GoalsCBIRRTSolved": 13
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1,
+        "benchmark segment 0: RDK rejected edge 49 sample 3/4: robot constraint: violation between coffee-claws-middle_origin and fridge-door-interior_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "5-original": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 108,
+      "accepted_rate": 0.9818181818181818,
+      "status": {
+        "solved": 108,
+        "validation_failed": 2
+      },
+      "total_s": 15.226994586,
+      "completion_ms": {
+        "median": 66.121375,
+        "p95": 366.735125,
+        "p99": 1356.349792,
+        "max": 4116.869625
+      },
+      "accepted_ms": {
+        "median": 65.16779199999999,
+        "p95": 366.735125,
+        "p99": 1356.349792,
+        "max": 4116.869625
+      },
+      "audit_s": 3.285665,
+      "thresholds": {
+        "1": 2,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsDirectSolved": 2927,
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 15
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 2 sample 178/200: obstacle constraint: violation between arm:wrist_link and blocker geometries": 1,
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "5-pr1": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 109,
+      "accepted_rate": 0.990909090909091,
+      "status": {
+        "solved": 109,
+        "validation_failed": 1
+      },
+      "total_s": 16.046867292,
+      "completion_ms": {
+        "median": 55.0308335,
+        "p95": 473.846042,
+        "p99": 2107.776,
+        "max": 4142.972916
+      },
+      "accepted_ms": {
+        "median": 54.624208,
+        "p95": 473.846042,
+        "p99": 2107.776,
+        "max": 4142.972916
+      },
+      "audit_s": 2.914638914,
+      "thresholds": {
+        "1": 2,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 1,
+        "GoalsCBIRRTSolved": 13
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "5-pr2": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 108,
+      "accepted_rate": 0.9818181818181818,
+      "status": {
+        "solved": 108,
+        "validation_failed": 2
+      },
+      "total_s": 13.753597413,
+      "completion_ms": {
+        "median": 48.347833,
+        "p95": 455.4905,
+        "p99": 710.573916,
+        "max": 3782.594708
+      },
+      "accepted_ms": {
+        "median": 47.364791,
+        "p95": 441.726708,
+        "p99": 698.398625,
+        "max": 3782.594708
+      },
+      "audit_s": 2.676480041,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1,
+        "benchmark segment 0: RDK rejected edge 397 sample 2/4: robot constraint: violation between glass and serving-area-shield_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "5-pr3": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 110,
+      "accepted_rate": 1.0,
+      "status": {
+        "solved": 110
+      },
+      "total_s": 15.213482996,
+      "completion_ms": {
+        "median": 52.4559785,
+        "p95": 464.128458,
+        "p99": 1078.245458,
+        "max": 3773.662375
+      },
+      "accepted_ms": {
+        "median": 52.4559785,
+        "p95": 464.128458,
+        "p99": 1078.245458,
+        "max": 3773.662375
+      },
+      "audit_s": 3.113224167,
+      "thresholds": {
+        "1": 2,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {}
+    },
+    "process_exit": 0
+  },
+  "5-pr4": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 110,
+      "accepted_rate": 1.0,
+      "status": {
+        "solved": 110
+      },
+      "total_s": 14.203852924,
+      "completion_ms": {
+        "median": 51.3583335,
+        "p95": 389.530916,
+        "p99": 1043.282916,
+        "max": 3754.94075
+      },
+      "accepted_ms": {
+        "median": 51.3583335,
+        "p95": 389.530916,
+        "p99": 1043.282916,
+        "max": 3754.94075
+      },
+      "audit_s": 3.037992873,
+      "thresholds": {
+        "1": 2,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {}
+    },
+    "process_exit": 0
+  },
+  "6-main": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 107,
+      "accepted_rate": 0.9727272727272728,
+      "status": {
+        "solved": 107,
+        "validation_failed": 3
+      },
+      "total_s": 14.680767001,
+      "completion_ms": {
+        "median": 54.207104,
+        "p95": 359.726416,
+        "p99": 1150.4525,
+        "max": 4233.758292
+      },
+      "accepted_ms": {
+        "median": 52.9075,
+        "p95": 359.726416,
+        "p99": 1150.4525,
+        "max": 4233.758292
+      },
+      "audit_s": 2.879519165,
+      "thresholds": {
+        "1": 2,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 6,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 13
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1,
+        "benchmark segment 0: RDK rejected edge 229 sample 2/3: robot constraint: violation between cup and ice-maker-mid_origin geometries": 1,
+        "benchmark segment 0: RDK rejected edge 36 sample 2/6: robot constraint: violation between coffee-claws-middle_origin and glass geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "6-original": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 109,
+      "accepted_rate": 0.990909090909091,
+      "status": {
+        "solved": 109,
+        "validation_failed": 1
+      },
+      "total_s": 15.092229832,
+      "completion_ms": {
+        "median": 67.287146,
+        "p95": 396.325417,
+        "p99": 1154.681209,
+        "max": 4132.213875
+      },
+      "accepted_ms": {
+        "median": 66.771417,
+        "p95": 396.325417,
+        "p99": 1154.681209,
+        "max": 4132.213875
+      },
+      "audit_s": 3.275760837,
+      "thresholds": {
+        "1": 2,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsDirectSolved": 2927,
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 1,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "6-pr1": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 108,
+      "accepted_rate": 0.9818181818181818,
+      "status": {
+        "solved": 108,
+        "validation_failed": 2
+      },
+      "total_s": 15.254313784,
+      "completion_ms": {
+        "median": 56.778333,
+        "p95": 420.709416,
+        "p99": 1026.868625,
+        "max": 4101.034583
+      },
+      "accepted_ms": {
+        "median": 54.767291,
+        "p95": 420.709416,
+        "p99": 1026.868625,
+        "max": 4101.034583
+      },
+      "audit_s": 3.008193165,
+      "thresholds": {
+        "1": 2,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1,
+        "benchmark segment 0: RDK rejected edge 36 sample 2/6: robot constraint: violation between coffee-claws-middle_origin and glass geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "6-pr2": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 108,
+      "accepted_rate": 0.9818181818181818,
+      "status": {
+        "solved": 108,
+        "validation_failed": 2
+      },
+      "total_s": 13.407265794,
+      "completion_ms": {
+        "median": 47.228353999999996,
+        "p95": 447.407583,
+        "p99": 736.043542,
+        "max": 3848.43925
+      },
+      "accepted_ms": {
+        "median": 46.71425,
+        "p95": 323.642791,
+        "p99": 649.107166,
+        "max": 3848.43925
+      },
+      "audit_s": 2.680724963,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 1,
+        "GoalsCBIRRTSolved": 13
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {
+        "benchmark segment 0: RDK rejected edge 76 sample 2/3: robot constraint: violation between filter_origin and tamper-right_origin geometries": 1,
+        "benchmark segment 0: RDK rejected edge 397 sample 2/4: robot constraint: violation between glass and serving-area-shield_origin geometries": 1
+      }
+    },
+    "process_exit": 0
+  },
+  "6-pr3": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 110,
+      "accepted_rate": 1.0,
+      "status": {
+        "solved": 110
+      },
+      "total_s": 14.730965129,
+      "completion_ms": {
+        "median": 51.3895625,
+        "p95": 454.91375,
+        "p99": 956.6235,
+        "max": 3793.124834
+      },
+      "accepted_ms": {
+        "median": 51.3895625,
+        "p95": 454.91375,
+        "p99": 956.6235,
+        "max": 3793.124834
+      },
+      "audit_s": 3.088018628,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 1,
+        "GoalsCBIRRTSolved": 13
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {}
+    },
+    "process_exit": 0
+  },
+  "6-pr4": {
+    "events": {
+      "started": 1004,
+      "plan_returned": 1004,
+      "finished": 1004
+    },
+    "unfinished": [],
+    "measured": 894,
+    "warmup": {
+      "n": 110,
+      "accepted": 110,
+      "accepted_rate": 1.0,
+      "status": {
+        "solved": 110
+      },
+      "total_s": 14.29915975,
+      "completion_ms": {
+        "median": 51.774104,
+        "p95": 374.962125,
+        "p99": 854.146333,
+        "max": 3903.041333
+      },
+      "accepted_ms": {
+        "median": 51.774104,
+        "p95": 374.962125,
+        "p99": 854.146333,
+        "max": 3903.041333
+      },
+      "audit_s": 3.137427746,
+      "thresholds": {
+        "1": 1,
+        "5": 0,
+        "30": 0
+      },
+      "phase_s": null,
+      "work": null,
+      "exact_state_peak_key_bytes": null,
+      "search_lifetime": null,
+      "search_selection": null,
+      "goal_solver_counts": {
+        "GoalsNudgeSolved": 5,
+        "GoalsRoadmapSolved": 0,
+        "GoalsCBIRRTSolved": 14
+      },
+      "effective_calibration": null,
+      "measured_calibration": null,
+      "scene_cache_snapshot_max": null,
+      "errors": {}
+    },
+    "process_exit": 0
+  }
+}

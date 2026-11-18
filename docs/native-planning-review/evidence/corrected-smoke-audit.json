@@ -1,0 +1,40 @@
+{
+  "1-pr1": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 704,
+      "warmup": 110,
+      "measured": 594
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-pr-stack/repartition/smoke-audit-final/1-pr1.jsonl",
+    "sha256": "86ed88ad150b3b2fb0772b851ac1709783d778f5594f9cf7b7dbb930bdb49788",
+    "audit_s": 20.274637085
+  },
+  "1-pr2": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 704,
+      "warmup": 110,
+      "measured": 594
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-pr-stack/repartition/smoke-audit-final/1-pr2.jsonl",
+    "sha256": "35fd8a137faf430875803415c62881278e8ace26f108949331f4287f844d80f6",
+    "audit_s": 20.329988242
+  }
+}

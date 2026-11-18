@@ -1,0 +1,5 @@
+Three-block exploratory follow-up for corrected PR1/2/3 boundaries. Each is measured against its predecessor and the frozen original. Separate from the six-block full-stack comparison; do not add or pool per-PR percentages.
+
+[Complete results](confirmation-results.md), [machine-readable results](confirmation-results.json), [request accounting](confirmation-accounting.json), [offline audit accounting](offline-audit-accounting.json), [protocol](protocol.json), [source and binary identity](identity.json), and [host/calibration/memory observations](environment.json).
+
+Reproduction tools are `run_observed.py`, `analyze.py`, `audit_blocks.py`, `audit_all.py` and `plot.py` in this directory. Restore the checksum-indexed local artifacts and source/overlay paths before replay; the frozen protocol verifies them. Exact executed commands are in confirmation-results.json. This public review export omits raw host process-list snapshots; the complete originals and raw trajectories remain local. Figures show percentile on the horizontal axis, linear milliseconds on the vertical axis, and an explicit direction of improvement.

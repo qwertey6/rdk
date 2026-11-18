@@ -1,0 +1,561 @@
+{
+  "pr1": {
+    "commit": "a2bc4d795553fdd4910dde49e992e79a24fccd9e",
+    "parent": "8ab5892be050dadb5de3b140b6ee9ea212984f51",
+    "branch": "jake/native-1-correctness",
+    "files": [
+      {
+        "path": "motionplan/armplanning/clearance_regression_test.go",
+        "added": 39,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/armplanning/context.go",
+        "added": 21,
+        "removed": 12,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/armplanning/data/native-clearance-regression-path.json",
+        "added": 57,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/armplanning/data/native-clearance-regression.json",
+        "added": 1,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/armplanning/data/native-dual-xarm6-crossing.json",
+        "added": 1,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/armplanning/data/native-thin-crossing-edge.json",
+        "added": 38,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/armplanning/node.go",
+        "added": 1,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/armplanning/path_check_regression_test.go",
+        "added": 115,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/armplanning/plan_manager.go",
+        "added": 13,
+        "removed": 4,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/armplanning/search_lifecycle_test.go",
+        "added": 65,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/collision_cache.go",
+        "added": 5,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/constraint_checker.go",
+        "added": 9,
+        "removed": 32,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/constraint_test.go",
+        "added": 5,
+        "removed": 4,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/ik/cancellation_test.go",
+        "added": 33,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/ik/nlopt.go",
+        "added": 26,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "referenceframe/interpolation_steps.go",
+        "added": 51,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "referenceframe/interpolation_steps_test.go",
+        "added": 33,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "spatialmath/geometry.go",
+        "added": 56,
+        "removed": 5,
+        "category": "runtime"
+      },
+      {
+        "path": "spatialmath/geometry_fingerprint_test.go",
+        "added": 25,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "spatialmath/mesh.go",
+        "added": 10,
+        "removed": 18,
+        "category": "runtime"
+      },
+      {
+        "path": "spatialmath/mesh_preparation_test.go",
+        "added": 62,
+        "removed": 0,
+        "category": "tests/fixtures"
+      }
+    ],
+    "totals": {
+      "runtime": {
+        "files": 9,
+        "added": 192,
+        "removed": 71
+      },
+      "tests/fixtures": {
+        "files": 12,
+        "added": 474,
+        "removed": 4
+      }
+    }
+  },
+  "pr2": {
+    "commit": "6a1590932f85add9d1ba3e5f231ead8fbe2de82c",
+    "parent": "a2bc4d795553fdd4910dde49e992e79a24fccd9e",
+    "branch": "jake/native-2-kinematics",
+    "files": [
+      {
+        "path": "motionplan/armplanning/accelerated_goal.go",
+        "added": 83,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/armplanning/accelerated_goal_test.go",
+        "added": 210,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/armplanning/node.go",
+        "added": 5,
+        "removed": 2,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/ik/batch_cost_test.go",
+        "added": 73,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/ik/combined.go",
+        "added": 7,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/ik/nlopt.go",
+        "added": 38,
+        "removed": 3,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/ik/solver.go",
+        "added": 4,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/ik/solver_nocgo.go",
+        "added": 3,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "referenceframe/prepared_transform.go",
+        "added": 217,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "referenceframe/prepared_transform_test.go",
+        "added": 135,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "spatialmath/dualquaternion.go",
+        "added": 19,
+        "removed": 9,
+        "category": "runtime"
+      },
+      {
+        "path": "spatialmath/dualquaternion_normalize_test.go",
+        "added": 133,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "spatialmath/dualquaternion_point_test.go",
+        "added": 83,
+        "removed": 0,
+        "category": "tests/fixtures"
+      }
+    ],
+    "totals": {
+      "runtime": {
+        "files": 8,
+        "added": 376,
+        "removed": 14
+      },
+      "tests/fixtures": {
+        "files": 5,
+        "added": 634,
+        "removed": 0
+      }
+    }
+  },
+  "pr3": {
+    "commit": "899cedca5585f59b8d18b7ca2fc9f3941fb472e3",
+    "parent": "6a1590932f85add9d1ba3e5f231ead8fbe2de82c",
+    "branch": "jake/native-3-collision",
+    "files": [
+      {
+        "path": "motionplan/adaptive_segment_test.go",
+        "added": 102,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/collision.go",
+        "added": 86,
+        "removed": 45,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/collision_allowance_masks_test.go",
+        "added": 138,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/collision_allowances_test.go",
+        "added": 50,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/collision_cache.go",
+        "added": 45,
+        "removed": 17,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/collision_cache_test.go",
+        "added": 19,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/collision_hint_reuse_test.go",
+        "added": 97,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/collision_test.go",
+        "added": 1,
+        "removed": 1,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/constraint_checker.go",
+        "added": 81,
+        "removed": 20,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/cover_state.go",
+        "added": 14,
+        "removed": 3,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/metrics.go",
+        "added": 4,
+        "removed": 2,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/segment_samples.go",
+        "added": 112,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/segment_samples_test.go",
+        "added": 118,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/shared_geometry_fk_test.go",
+        "added": 67,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "referenceframe/motion_bound_numerics.go",
+        "added": 103,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "referenceframe/motion_bound_numerics_test.go",
+        "added": 76,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "referenceframe/motion_bounds.go",
+        "added": 256,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "referenceframe/motion_bounds_test.go",
+        "added": 116,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "referenceframe/prepared_geometries.go",
+        "added": 210,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "referenceframe/prepared_geometries_test.go",
+        "added": 130,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "referenceframe/prepared_interpolation.go",
+        "added": 56,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "referenceframe/shared_geometry_fk_test.go",
+        "added": 120,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "spatialmath/geometry_buffer.go",
+        "added": 74,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "spatialmath/geometry_buffer_test.go",
+        "added": 67,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "spatialmath/sdf.go",
+        "added": 9,
+        "removed": 0,
+        "category": "runtime"
+      }
+    ],
+    "totals": {
+      "runtime": {
+        "files": 12,
+        "added": 1050,
+        "removed": 87
+      },
+      "tests/fixtures": {
+        "files": 13,
+        "added": 1101,
+        "removed": 1
+      }
+    }
+  },
+  "pr4": {
+    "commit": "76654f793a7559db83e22d81e46fee807bc84439",
+    "parent": "899cedca5585f59b8d18b7ca2fc9f3941fb472e3",
+    "branch": "jake/native-4-finishing",
+    "files": [
+      {
+        "path": "motionplan/armplanning/context.go",
+        "added": 14,
+        "removed": 10,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/armplanning/finishing_budget.go",
+        "added": 56,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/armplanning/finishing_budget_test.go",
+        "added": 42,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/armplanning/guarded_finishing.go",
+        "added": 57,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/armplanning/guarded_finishing_test.go",
+        "added": 115,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/armplanning/input_frame_smoothing.go",
+        "added": 23,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/armplanning/input_frame_smoothing_test.go",
+        "added": 197,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/armplanning/shortcut_partition.go",
+        "added": 58,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/armplanning/shortcut_partition_test.go",
+        "added": 66,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/armplanning/shortcut_quality.go",
+        "added": 71,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/armplanning/shortcut_quality_test.go",
+        "added": 69,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/armplanning/smooth.go",
+        "added": 43,
+        "removed": 38,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/collision_cache.go",
+        "added": 2,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/constraint_checker.go",
+        "added": 13,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/exact_state_cache.go",
+        "added": 138,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/exact_state_cache_test.go",
+        "added": 220,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/shortcut_geometry_test.go",
+        "added": 146,
+        "removed": 0,
+        "category": "tests/fixtures"
+      },
+      {
+        "path": "motionplan/shortcut_validation.go",
+        "added": 65,
+        "removed": 0,
+        "category": "runtime"
+      },
+      {
+        "path": "motionplan/shortcut_validation_test.go",
+        "added": 123,
+        "removed": 0,
+        "category": "tests/fixtures"
+      }
+    ],
+    "totals": {
+      "runtime": {
+        "files": 11,
+        "added": 540,
+        "removed": 48
+      },
+      "tests/fixtures": {
+        "files": 8,
+        "added": 978,
+        "removed": 0
+      }
+    }
+  },
+  "combined_net": {
+    "files": 71,
+    "totals": {
+      "runtime": {
+        "files": 33,
+        "added": 2156,
+        "removed": 218
+      },
+      "tests/fixtures": {
+        "files": 38,
+        "added": 3187,
+        "removed": 5
+      }
+    }
+  }
+}

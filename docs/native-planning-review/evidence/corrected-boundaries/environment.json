@@ -1,0 +1,335 @@
+{
+  "1-main": {
+    "variant": "main",
+    "block": 1,
+    "settings": {
+      "calibration": 0.3111111111111111,
+      "ik_workers": 7,
+      "search_workers": 4
+    },
+    "max_rss_bytes": 11750703104,
+    "peak_footprint_bytes": 11700511816,
+    "observations": 22,
+    "external_cpu_percent": {
+      "median": 103.99999999999991,
+      "max": 194.69999999999993
+    },
+    "power": {
+      "battery": 22
+    },
+    "advisory_reasons": {
+      "aggregate external CPU exceeds limit": 22
+    },
+    "active_tools": {}
+  },
+  "1-original": {
+    "variant": "original",
+    "block": 1,
+    "settings": null,
+    "max_rss_bytes": 11612438528,
+    "peak_footprint_bytes": 11562197968,
+    "observations": 22,
+    "external_cpu_percent": {
+      "median": 106.34999999999997,
+      "max": 215.0999999999999
+    },
+    "power": {
+      "battery": 22
+    },
+    "advisory_reasons": {
+      "aggregate external CPU exceeds limit": 22
+    },
+    "active_tools": {}
+  },
+  "1-pr1": {
+    "variant": "pr1",
+    "block": 1,
+    "settings": {
+      "calibration": 0.37777777777777777,
+      "ik_workers": 7,
+      "search_workers": 4
+    },
+    "max_rss_bytes": 11814633472,
+    "peak_footprint_bytes": 11762803832,
+    "observations": 32,
+    "external_cpu_percent": {
+      "median": 104.99999999999997,
+      "max": 152.5999999999999
+    },
+    "power": {
+      "battery": 32
+    },
+    "advisory_reasons": {
+      "aggregate external CPU exceeds limit": 32
+    },
+    "active_tools": {}
+  },
+  "1-pr2": {
+    "variant": "pr2",
+    "block": 1,
+    "settings": {
+      "calibration": 0.26666666666666666,
+      "ik_workers": 7,
+      "search_workers": 4
+    },
+    "max_rss_bytes": 11784896512,
+    "peak_footprint_bytes": 11733197920,
+    "observations": 30,
+    "external_cpu_percent": {
+      "median": 133.49999999999994,
+      "max": 204.29999999999993
+    },
+    "power": {
+      "battery": 30
+    },
+    "advisory_reasons": {
+      "aggregate external CPU exceeds limit": 30
+    },
+    "active_tools": {}
+  },
+  "1-pr3": {
+    "variant": "pr3",
+    "block": 1,
+    "settings": {
+      "calibration": 0.26666666666666666,
+      "ik_workers": 7,
+      "search_workers": 4
+    },
+    "max_rss_bytes": 12674252800,
+    "peak_footprint_bytes": 12624897768,
+    "observations": 22,
+    "external_cpu_percent": {
+      "median": 100.64999999999995,
+      "max": 164.0999999999999
+    },
+    "power": {
+      "battery": 22
+    },
+    "advisory_reasons": {
+      "aggregate external CPU exceeds limit": 22
+    },
+    "active_tools": {}
+  },
+  "2-main": {
+    "variant": "main",
+    "block": 2,
+    "settings": {
+      "calibration": 0.3111111111111111,
+      "ik_workers": 7,
+      "search_workers": 4
+    },
+    "max_rss_bytes": 11759714304,
+    "peak_footprint_bytes": 11708408928,
+    "observations": 22,
+    "external_cpu_percent": {
+      "median": 146.94999999999993,
+      "max": 180.09999999999988
+    },
+    "power": {
+      "battery": 22
+    },
+    "advisory_reasons": {
+      "aggregate external CPU exceeds limit": 22
+    },
+    "active_tools": {}
+  },
+  "2-original": {
+    "variant": "original",
+    "block": 2,
+    "settings": null,
+    "max_rss_bytes": 11799625728,
+    "peak_footprint_bytes": 11749008456,
+    "observations": 22,
+    "external_cpu_percent": {
+      "median": 121.49999999999991,
+      "max": 232.59999999999994
+    },
+    "power": {
+      "battery": 22
+    },
+    "advisory_reasons": {
+      "aggregate external CPU exceeds limit": 22
+    },
+    "active_tools": {}
+  },
+  "2-pr1": {
+    "variant": "pr1",
+    "block": 2,
+    "settings": {
+      "calibration": 0.37777777777777777,
+      "ik_workers": 7,
+      "search_workers": 4
+    },
+    "max_rss_bytes": 11698372608,
+    "peak_footprint_bytes": 11646575688,
+    "observations": 32,
+    "external_cpu_percent": {
+      "median": 140.24999999999994,
+      "max": 235.4999999999999
+    },
+    "power": {
+      "battery": 32
+    },
+    "advisory_reasons": {
+      "aggregate external CPU exceeds limit": 32
+    },
+    "active_tools": {}
+  },
+  "2-pr2": {
+    "variant": "pr2",
+    "block": 2,
+    "settings": {
+      "calibration": 0.28888888888888886,
+      "ik_workers": 7,
+      "search_workers": 4
+    },
+    "max_rss_bytes": 11853512704,
+    "peak_footprint_bytes": 11802256528,
+    "observations": 30,
+    "external_cpu_percent": {
+      "median": 123.24999999999997,
+      "max": 164.19999999999996
+    },
+    "power": {
+      "battery": 30
+    },
+    "advisory_reasons": {
+      "aggregate external CPU exceeds limit": 30
+    },
+    "active_tools": {}
+  },
+  "2-pr3": {
+    "variant": "pr3",
+    "block": 2,
+    "settings": {
+      "calibration": 0.26666666666666666,
+      "ik_workers": 7,
+      "search_workers": 4
+    },
+    "max_rss_bytes": 12748242944,
+    "peak_footprint_bytes": 12699068160,
+    "observations": 22,
+    "external_cpu_percent": {
+      "median": 130.3499999999999,
+      "max": 305.5999999999999
+    },
+    "power": {
+      "battery": 22
+    },
+    "advisory_reasons": {
+      "aggregate external CPU exceeds limit": 22
+    },
+    "active_tools": {}
+  },
+  "3-main": {
+    "variant": "main",
+    "block": 3,
+    "settings": {
+      "calibration": 0.35555555555555557,
+      "ik_workers": 7,
+      "search_workers": 4
+    },
+    "max_rss_bytes": 11661492224,
+    "peak_footprint_bytes": 11609596976,
+    "observations": 22,
+    "external_cpu_percent": {
+      "median": 107.49999999999993,
+      "max": 189.1999999999999
+    },
+    "power": {
+      "battery": 22
+    },
+    "advisory_reasons": {
+      "aggregate external CPU exceeds limit": 22
+    },
+    "active_tools": {}
+  },
+  "3-original": {
+    "variant": "original",
+    "block": 3,
+    "settings": null,
+    "max_rss_bytes": 11610243072,
+    "peak_footprint_bytes": 11559773184,
+    "observations": 22,
+    "external_cpu_percent": {
+      "median": 138.04999999999995,
+      "max": 207.4999999999999
+    },
+    "power": {
+      "battery": 22
+    },
+    "advisory_reasons": {
+      "aggregate external CPU exceeds limit": 22
+    },
+    "active_tools": {}
+  },
+  "3-pr1": {
+    "variant": "pr1",
+    "block": 3,
+    "settings": {
+      "calibration": 0.37777777777777777,
+      "ik_workers": 7,
+      "search_workers": 4
+    },
+    "max_rss_bytes": 11781341184,
+    "peak_footprint_bytes": 11729609824,
+    "observations": 32,
+    "external_cpu_percent": {
+      "median": 129.89999999999992,
+      "max": 356.4000000000003
+    },
+    "power": {
+      "battery": 32
+    },
+    "advisory_reasons": {
+      "aggregate external CPU exceeds limit": 32
+    },
+    "active_tools": {}
+  },
+  "3-pr2": {
+    "variant": "pr2",
+    "block": 3,
+    "settings": {
+      "calibration": 0.28888888888888886,
+      "ik_workers": 7,
+      "search_workers": 4
+    },
+    "max_rss_bytes": 16139026432,
+    "peak_footprint_bytes": 18395936544,
+    "observations": 31,
+    "external_cpu_percent": {
+      "median": 104.09999999999992,
+      "max": 268.9000000000001
+    },
+    "power": {
+      "battery": 31
+    },
+    "advisory_reasons": {
+      "aggregate external CPU exceeds limit": 31
+    },
+    "active_tools": {}
+  },
+  "3-pr3": {
+    "variant": "pr3",
+    "block": 3,
+    "settings": {
+      "calibration": 0.26666666666666666,
+      "ik_workers": 7,
+      "search_workers": 4
+    },
+    "max_rss_bytes": 12841402368,
+    "peak_footprint_bytes": 12791785312,
+    "observations": 22,
+    "external_cpu_percent": {
+      "median": 100.64999999999995,
+      "max": 171.19999999999993
+    },
+    "power": {
+      "battery": 22
+    },
+    "advisory_reasons": {
+      "aggregate external CPU exceeds limit": 22
+    },
+    "active_tools": {}
+  }
+}

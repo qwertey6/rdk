@@ -1,0 +1,293 @@
+{
+  "1-original": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 699,
+      "warmup": 110,
+      "measured": 594,
+      "rejected_or_no_trajectory": 5
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-corrected-20261118/offline-audit/block1/1-original.jsonl",
+    "sha256": "014b99492bf9a9a456ffdb5a6c777928e389a8a0e89bb2a2bf125151d39d9b5f",
+    "audit_s": 22.312015583
+  },
+  "1-main": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 678,
+      "warmup": 110,
+      "measured": 594,
+      "rejected_or_no_trajectory": 26
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-corrected-20261118/offline-audit/block1/1-main.jsonl",
+    "sha256": "834b7dd19f08dfff231b1081ad8b65f16510582cfb092d494c300dd28d2a77a8",
+    "audit_s": 22.091839067
+  },
+  "1-pr1": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 704,
+      "warmup": 110,
+      "measured": 594
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-corrected-20261118/offline-audit/block1/1-pr1.jsonl",
+    "sha256": "251428244f7aeffcd9568069f21f4f21670ee709432beaf051fdb7a42e74abf0",
+    "audit_s": 21.257091914
+  },
+  "1-pr2": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 704,
+      "warmup": 110,
+      "measured": 594
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-corrected-20261118/offline-audit/block1/1-pr2.jsonl",
+    "sha256": "d890f409b7b197d8ebe9c07279b9f2e98ff0e66b881fea01e73e69edc4f779df",
+    "audit_s": 21.518179368
+  },
+  "1-pr3": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 704,
+      "warmup": 110,
+      "measured": 594
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-corrected-20261118/offline-audit/block1/1-pr3.jsonl",
+    "sha256": "3dbc3158b54901e0160a108b06adf90d5fdef452712b969d458fc7e513b3d6c6",
+    "audit_s": 21.060487667
+  },
+  "2-original": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 697,
+      "warmup": 110,
+      "measured": 594,
+      "rejected_or_no_trajectory": 7
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-corrected-20261118/offline-audit/block2/2-original.jsonl",
+    "sha256": "89a1e31c44dff0e7bfae8f088e2da9a282343a4731619b6f6fbbc84348b13bf1",
+    "audit_s": 22.404169317
+  },
+  "2-main": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 673,
+      "warmup": 110,
+      "measured": 594,
+      "rejected_or_no_trajectory": 31
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-corrected-20261118/offline-audit/block2/2-main.jsonl",
+    "sha256": "fc19f9ed04a36030f684ce5212a704e82550aee905cfcf0af9444744910d59a6",
+    "audit_s": 21.864290488
+  },
+  "2-pr1": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 704,
+      "warmup": 110,
+      "measured": 594
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-corrected-20261118/offline-audit/block2/2-pr1.jsonl",
+    "sha256": "627b829a0558a2ec62b8f370b2e242be0396f3865b51df71030c33869904ead9",
+    "audit_s": 21.526508122
+  },
+  "2-pr2": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 704,
+      "warmup": 110,
+      "measured": 594
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-corrected-20261118/offline-audit/block2/2-pr2.jsonl",
+    "sha256": "7629f4fcfa1e34729f8caaa730f05bf9810d5e8c6dbe9c4d059af3ed481628cd",
+    "audit_s": 21.29288025
+  },
+  "2-pr3": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 704,
+      "warmup": 110,
+      "measured": 594
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-corrected-20261118/offline-audit/block2/2-pr3.jsonl",
+    "sha256": "9241a9ad4ebf2332d2275a290c99a4cd8dc4bd4604798257b2da9795faac96f8",
+    "audit_s": 21.193989471
+  },
+  "3-original": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 680,
+      "warmup": 110,
+      "measured": 594,
+      "rejected_or_no_trajectory": 24
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-corrected-20261118/offline-audit/block3/3-original.jsonl",
+    "sha256": "6526f389b4c3ef17a5a07e4f0146cfa90733c258dbed6cead45d40b5ffb6b633",
+    "audit_s": 22.521194135
+  },
+  "3-main": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 702,
+      "warmup": 110,
+      "measured": 594,
+      "rejected_or_no_trajectory": 2
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-corrected-20261118/offline-audit/block3/3-main.jsonl",
+    "sha256": "ab1460ffe0a43181e3704eea2ba120d3df2729da7861a8512ec96c051e45f2ce",
+    "audit_s": 22.432204698
+  },
+  "3-pr1": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 704,
+      "warmup": 110,
+      "measured": 594
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-corrected-20261118/offline-audit/block3/3-pr1.jsonl",
+    "sha256": "fdbdd3c11c41b6b219dd5f31e0ae571fb1eec8f25dc991a76272fb2ca0174c29",
+    "audit_s": 21.41066292
+  },
+  "3-pr2": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 704,
+      "warmup": 110,
+      "measured": 594
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-corrected-20261118/offline-audit/block3/3-pr2.jsonl",
+    "sha256": "6fcd2ecb3eb20e67dc80ae71ee1ffd015fb8d2937fd210f5d4828ee925b6d262",
+    "audit_s": 21.643494424
+  },
+  "3-pr3": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 704,
+    "events": {
+      "started": 704,
+      "finished": 704
+    },
+    "outcomes": {
+      "accepted": 704,
+      "warmup": 110,
+      "measured": 594
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-corrected-20261118/offline-audit/block3/3-pr3.jsonl",
+    "sha256": "53369b467ce6f39b73e764258a1f463f05df43c66fc89fc9367df112192b245b",
+    "audit_s": 21.386294631
+  }
+}

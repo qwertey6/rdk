@@ -1,0 +1,1 @@
+Raw trajectories, journals, logs and profiles remain local at `/tmp/rdk-native-stack-20261118`. SHA-256 indexes are in confirmation-results.json and offline-audit-accounting.json. Committing this report does not back up the indexed payloads.

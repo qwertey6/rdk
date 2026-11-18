@@ -1,0 +1,42 @@
+{
+  "/tmp/rdk-native-pr-stack/measured-source.bundle": {
+    "sha256": "a288e8eeb8f9e4cf3f3d462d4bc84de11f805f0ffecc15f94157daea06add42f",
+    "bytes": 76364
+  },
+  "/tmp/rdk-native-pr-stack/final-source.bundle": {
+    "sha256": "5d29fc3451b7d386c9ade7d50a0221ffcda60f0fec8b25d73649372b367d9d7d",
+    "bytes": 78497
+  },
+  "/tmp/rdk-native-pr-stack/binaries/pr4.test": {
+    "sha256": "7c7f22b0486ee4bde16a02137fc15fa9e5db2d5c11e47aa58aaa2c6d7044f0a5",
+    "bytes": 128117858
+  },
+  "/tmp/rdk-native-pr-stack/binaries/pr3.test": {
+    "sha256": "281d76a713897fb7bc7ee634e51e19c607967e2bb1d698e2a6279e9d6c4f7be4",
+    "bytes": 128149426
+  },
+  "/tmp/rdk-native-pr-stack/binaries/pr2.test": {
+    "sha256": "c8d1f0b7059ba10947efc43d1f6e9fcb918ec261327f980ba30583ee29c367ba",
+    "bytes": 128012754
+  },
+  "/tmp/rdk-native-pr-stack/binaries/pr1.test": {
+    "sha256": "f0591e0f173c160797ed7c864bb7181f0418efbefd95da39c3eadc8476d95d48",
+    "bytes": 128011554
+  },
+  "/tmp/rdk-native-pr-stack/binaries/main.test": {
+    "sha256": "924ac4cbb03143b2c218c137c6ebca149356172e9fbeff086988ac54568e7d01",
+    "bytes": 127994514
+  },
+  "/tmp/rdk-native-pr-stack/repartition/binaries/pr3.test": {
+    "sha256": "363fb4b437251e890092af54c0c2f728806b63879191f5d7d97f09e397a8830e",
+    "bytes": 128149426
+  },
+  "/tmp/rdk-native-pr-stack/repartition/binaries/pr2.test": {
+    "sha256": "2bf30c97ac2229ab77d9712a2371e39e905178cc0e2b945f2834e5fe2f2a6f0c",
+    "bytes": 128029890
+  },
+  "/tmp/rdk-native-pr-stack/repartition/binaries/pr1.test": {
+    "sha256": "be36a56bf9266497d9664b76229fe820572915f2fc4c00c6ce9b449dc8dd7618",
+    "bytes": 128028706
+  }
+}

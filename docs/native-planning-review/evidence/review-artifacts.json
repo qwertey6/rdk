@@ -1,0 +1,314 @@
+{
+  "03-collision-and-scene-reuse.md": {
+    "sha256": "6f71bffbc6dd2a1eb4be8cac90b6479b2bfb7e8a8b910bf313628c81e272a062",
+    "bytes": 6649
+  },
+  "PREPARATION.md": {
+    "sha256": "a09685fde9068cb65780ab6331f22b03d580711884607fa59b24ecb6f94f2704",
+    "bytes": 2687
+  },
+  "01-correctness-and-worker-lifetime.md": {
+    "sha256": "d24782042df4247401d859a605e732597ec19773783b27fcd459e5d099f8eded",
+    "bytes": 6810
+  },
+  "README.md": {
+    "sha256": "2ca38d9c8312172017c3040353f615bf60161ff7cf79a59a27d0adee108c1961",
+    "bytes": 9393
+  },
+  "02-native-fk-and-ik.md": {
+    "sha256": "a45e3a1579d7014ec8152ad69a74f3a653694739cdaaef5c00c3be3f23838b49",
+    "bytes": 6507
+  },
+  "04-finishing-and-smoothing.md": {
+    "sha256": "d78f70a37653980979e5af289b6b7c4beb60c227c626b1609710885e8d3d9d71",
+    "bytes": 6494
+  },
+  "HISTORICAL.md": {
+    "sha256": "937c9e88eb5989c3bf92f1eaa0b36d58606ba2f1d3e8182a51c48e39f3821437",
+    "bytes": 1155
+  },
+  "evidence/execution-restart.json": {
+    "sha256": "1f1fcc3547348b9af349700531f084e09f6577b45386aec25243fa1466c7430c",
+    "bytes": 210795
+  },
+  "evidence/VALIDATION.md": {
+    "sha256": "42e0e3d72b2cc28f5d047b53baa411e951c876a4fca7540b5c18ac75481291f4",
+    "bytes": 3054
+  },
+  "evidence/corrected-smoke-audit.json": {
+    "sha256": "cdf75511e0488346a59d6870902adf5f9f310ef9a6a048d4bf47092989366143",
+    "bytes": 957
+  },
+  "evidence/diff-stats.json": {
+    "sha256": "3475a7b26c9e0016dbf2627ee3512abe2d7bb6c4a6b864d2fec9f91ff6c72ea4",
+    "bytes": 13630
+  },
+  "evidence/source-equivalence.json": {
+    "sha256": "4624dec15bd7ee11f4f468f7186c1583015654d714849fe6e10f5b8f4ffddaea",
+    "bytes": 5205
+  },
+  "evidence/local-binary-index.json": {
+    "sha256": "2a49f0d5f14a966c2fab05e19f821eb39c88c71dd60780141e3dd2f82e0bbc77",
+    "bytes": 1639
+  },
+  "evidence/corrected-boundaries/quiet_window.py": {
+    "sha256": "2b6101c96c63f75f2b05e2835ec92751b4781ee62fe24d62f2d65696ee49ea43",
+    "bytes": 5855
+  },
+  "evidence/corrected-boundaries/plot.py": {
+    "sha256": "603415e009e4ae8e85db43bf5ce202e7997a996253796c2d948d39ea9eee046d",
+    "bytes": 8920
+  },
+  "evidence/corrected-boundaries/confirmation-accounting.json": {
+    "sha256": "51a4c0c4c07774d38a8c1e2f719faf6885bb6566f94c67e8f1a1ca007b55e88c",
+    "bytes": 20315
+  },
+  "evidence/corrected-boundaries/audit_blocks.py": {
+    "sha256": "bcfcc668b73d30c54c06dd820477e3c179bbbc503e36928b83a2438fcecb7028",
+    "bytes": 2998
+  },
+  "evidence/corrected-boundaries/confirmation-results.md": {
+    "sha256": "9bc06524dc9ed0f269eab489fb9014217fd7c756c376743b4dbeecb55adc01b7",
+    "bytes": 87410
+  },
+  "evidence/corrected-boundaries/run_observed.py": {
+    "sha256": "333dcda8aa9927b04a6f33cdef724e9d75e1259dab2a5bdb863481fe16fd5a4f",
+    "bytes": 8538
+  },
+  "evidence/corrected-boundaries/README.md": {
+    "sha256": "b8e07ba3262645d77f353ab2428016a4af2d4c5a79f4fafe506419d5e5420fea",
+    "bytes": 1127
+  },
+  "evidence/corrected-boundaries/identity.json": {
+    "sha256": "dd5b4cd74fb4f07b88b857102761c1cd1788765744e8125d88bb6faa37398202",
+    "bytes": 35992
+  },
+  "evidence/corrected-boundaries/RAW-STORAGE.md": {
+    "sha256": "9ed31370f4fae99b6531adc2c958c35dc53d7f10b304cc46424f046396f14a8f",
+    "bytes": 252
+  },
+  "evidence/corrected-boundaries/audit_all.py": {
+    "sha256": "d6730de0611f2ddcdc8b56f395a1af6aab3c074845f376aacf17045a32a35e1e",
+    "bytes": 4990
+  },
+  "evidence/corrected-boundaries/protocol.json": {
+    "sha256": "8186465b67422e3d60ca7f614f3274d4a0f132c38c266ccb9eb15ba3ea15aca0",
+    "bytes": 43915
+  },
+  "evidence/corrected-boundaries/confirmation-results.json": {
+    "sha256": "2db59cab3a10c63051c842d30622d922e1154758cc5e30262ae62e74ebbdc7da",
+    "bytes": 1287620
+  },
+  "evidence/corrected-boundaries/environment.json": {
+    "sha256": "4f99bc2903c9cafa80d08128e0464bfe333a3bbef2e060af58a66fb4a7407a12",
+    "bytes": 7590
+  },
+  "evidence/corrected-boundaries/offline-audit-accounting.json": {
+    "sha256": "4027ddfd27cac5e79d8ab13994e429d40b826ff19e86fd9be05e5f788b847894",
+    "bytes": 7528
+  },
+  "evidence/corrected-boundaries/analyze.py": {
+    "sha256": "8671ce26105e48d6b2a420c76b45a5d1c70882de1852b8b9ab5d183f24c2b430",
+    "bytes": 19721
+  },
+  "evidence/corrected-boundaries/figures/pr1/quantile-effects.pdf": {
+    "sha256": "342f27fcf44ef4e88e6f1cae4b76478a98d358ef49ea609c0b1bffbf68bc42ca",
+    "bytes": 21600
+  },
+  "evidence/corrected-boundaries/figures/pr1/quantile-effects.png": {
+    "sha256": "23dd60a8b5c44596bbec3818cb758e8454c874d0452183fc78218acacfefcc02",
+    "bytes": 121914
+  },
+  "evidence/corrected-boundaries/figures/pr1/quantile-effects.json": {
+    "sha256": "61cc37ae8051c77c0a5c616275a1d2bdf1d543d47aedfb008034f2f1bc519462",
+    "bytes": 2849
+  },
+  "evidence/corrected-boundaries/figures/pr1/latency-percentiles.png": {
+    "sha256": "b205745665f1e13d7a81ae9a96f81e96071bcbfc154925a943a5fa676119c042",
+    "bytes": 248854
+  },
+  "evidence/corrected-boundaries/figures/pr1/accepted-by-time.png": {
+    "sha256": "3709097acea5b91c5eb9f62b9dc1f513883bdc47d5d38d747a53fbb952fea40b",
+    "bytes": 138084
+  },
+  "evidence/corrected-boundaries/figures/pr1/latency-percentiles.pdf": {
+    "sha256": "2a475015b79cacad6869c073a51358ae50960550e9647b36d4aaa5ca195450f6",
+    "bytes": 49253
+  },
+  "evidence/corrected-boundaries/figures/pr1/accepted-by-time.pdf": {
+    "sha256": "b7b46b6279794c03bfbf9b548adcf47943ceeff0db9d748302f54ec3d1762745",
+    "bytes": 41564
+  },
+  "evidence/corrected-boundaries/figures/pr2/quantile-effects.pdf": {
+    "sha256": "31cee8abfafaf3dafca916f409a4a4e12d78db81e6682af9e45225602ed9a0b0",
+    "bytes": 22295
+  },
+  "evidence/corrected-boundaries/figures/pr2/quantile-effects.png": {
+    "sha256": "d685bc1d2b1722889f826248bb62b6bd42db27e5581bc20c807cc200fb6d626e",
+    "bytes": 113379
+  },
+  "evidence/corrected-boundaries/figures/pr2/quantile-effects.json": {
+    "sha256": "076ead94376f22f024e9140a1cacbc8b51f1d47ab396ad05e6c340e25ab5b356",
+    "bytes": 3025
+  },
+  "evidence/corrected-boundaries/figures/pr2/latency-percentiles.png": {
+    "sha256": "ae1245f0516fd26beae30cd7bb39f2618389a3b336354a8de58c9def5bf31353",
+    "bytes": 246902
+  },
+  "evidence/corrected-boundaries/figures/pr2/accepted-by-time.png": {
+    "sha256": "d8b07e4d6a4e0af5221d36e1488087607c0c7977caeb9684fab57f9c762e0eca",
+    "bytes": 131218
+  },
+  "evidence/corrected-boundaries/figures/pr2/latency-percentiles.pdf": {
+    "sha256": "1a12234ccb9c89045665e79fd01df512e1b9d10c2f95e43e2dbe71542a5c8ff1",
+    "bytes": 50584
+  },
+  "evidence/corrected-boundaries/figures/pr2/accepted-by-time.pdf": {
+    "sha256": "8facccd4fd20a43c37dc62c4bb84e280660e6ee884ff24fbdcadc7a49ea267af",
+    "bytes": 43049
+  },
+  "evidence/corrected-boundaries/figures/pr3/quantile-effects.pdf": {
+    "sha256": "adfe67a9aefca7c1023f6b5c0bac12d6c416d763fca6c56f54e2b52b6c7de4ca",
+    "bytes": 21823
+  },
+  "evidence/corrected-boundaries/figures/pr3/quantile-effects.png": {
+    "sha256": "07011a326590e9033b3c4a497463d7eec501a06c927569cc95e08712fb036ab8",
+    "bytes": 120313
+  },
+  "evidence/corrected-boundaries/figures/pr3/quantile-effects.json": {
+    "sha256": "1e05ac2e7fe196e10029a22252173ea5dba2ad15d3ad20993effbb554ff68e72",
+    "bytes": 2964
+  },
+  "evidence/corrected-boundaries/figures/pr3/latency-percentiles.png": {
+    "sha256": "3a4b6a276196108c0728c94b2b009039334ea7b6027c505ab816c51e916d718a",
+    "bytes": 245341
+  },
+  "evidence/corrected-boundaries/figures/pr3/accepted-by-time.png": {
+    "sha256": "24c2fa82afed03be20a8af2c5b747cb68764a069c52e16fc38e3e8af68ed0b28",
+    "bytes": 133885
+  },
+  "evidence/corrected-boundaries/figures/pr3/latency-percentiles.pdf": {
+    "sha256": "b58c6608d084396ebd9189a559b51f7134870f28b4dd6622ed2e9887978293bc",
+    "bytes": 49415
+  },
+  "evidence/corrected-boundaries/figures/pr3/accepted-by-time.pdf": {
+    "sha256": "62f52dc115cb3c943dd107a9ab019cdf4877be5cb2115db651675a687a7af080",
+    "bytes": 43253
+  },
+  "evidence/full-stack/quiet_window.py": {
+    "sha256": "2b6101c96c63f75f2b05e2835ec92751b4781ee62fe24d62f2d65696ee49ea43",
+    "bytes": 5855
+  },
+  "evidence/full-stack/plot.py": {
+    "sha256": "9b12528724e339bafa4c78e87fad0c58ec76566e797def63d0a1a863e8f1268e",
+    "bytes": 8920
+  },
+  "evidence/full-stack/confirmation-accounting.json": {
+    "sha256": "9689cf895bb8e1e8f813245912f98bc27f4d05f64157b06abaa1527538b15363",
+    "bytes": 50210
+  },
+  "evidence/full-stack/audit_blocks.py": {
+    "sha256": "bcfcc668b73d30c54c06dd820477e3c179bbbc503e36928b83a2438fcecb7028",
+    "bytes": 2998
+  },
+  "evidence/full-stack/confirmation-results.md": {
+    "sha256": "348fae7171b6237cf7c8e7552d894047434c136de748d94c85c2b7018f9197d0",
+    "bytes": 109315
+  },
+  "evidence/full-stack/run_observed.py": {
+    "sha256": "cb45804147dfe77e84310bc72115060f43bc5f6ecefa9b77e645344d062d7d67",
+    "bytes": 8551
+  },
+  "evidence/full-stack/README.md": {
+    "sha256": "a815f0b1610cc149ce9d5ef5eda527cff7d021812fb3a98dee936ca624422bc4",
+    "bytes": 1372
+  },
+  "evidence/full-stack/identity.json": {
+    "sha256": "2f1f2c5e182cfa9957c5b78fd40d206447366c90f5bf8806dba7c7af24e24baf",
+    "bytes": 36178
+  },
+  "evidence/full-stack/RAW-STORAGE.md": {
+    "sha256": "366a43f93ccb340985e153bbf622cc94bbb18431118fad5cda06c83c66c7fcff",
+    "bytes": 242
+  },
+  "evidence/full-stack/audit_all.py": {
+    "sha256": "d6730de0611f2ddcdc8b56f395a1af6aab3c074845f376aacf17045a32a35e1e",
+    "bytes": 4990
+  },
+  "evidence/full-stack/protocol.json": {
+    "sha256": "6ec15783703859a0043661fbcc52cfb5834006183e1ef2bdc87a1bd0a4806572",
+    "bytes": 51119
+  },
+  "evidence/full-stack/confirmation-results.json": {
+    "sha256": "2ebc988843c10208e30aa77e124d9197d60b546fad5c3a82a62d40c11a3efa1f",
+    "bytes": 1715784
+  },
+  "evidence/full-stack/environment.json": {
+    "sha256": "ae57059b8e260a3b4f99370a5acf8812c30ff09444950031ceeabc1365a2a886",
+    "bytes": 18074
+  },
+  "evidence/full-stack/offline-audit-accounting.json": {
+    "sha256": "5fc0ecf38645697a386095ed0a28bbfd8f58a9ff62a5d50802a26fb9ba6144b5",
+    "bytes": 18182
+  },
+  "evidence/full-stack/analyze.py": {
+    "sha256": "9f80bc4baab62237c92e413162574e1cb5473ddc36b04f38f82500de2f5fb3f0",
+    "bytes": 19790
+  },
+  "evidence/full-stack/figures/pr4/quantile-effects.pdf": {
+    "sha256": "abab634c56e07c59218b9098866d460e90abae53703da97a14d9c9d016b88905",
+    "bytes": 22606
+  },
+  "evidence/full-stack/figures/pr4/quantile-effects.png": {
+    "sha256": "668a684fa67fe885922a04e304cd41efa00d84bc9068a7b6b289da754a6ffbf1",
+    "bytes": 118878
+  },
+  "evidence/full-stack/figures/pr4/quantile-effects.json": {
+    "sha256": "f2f21985ebeb86672e40b3cd173d0070c09cd2db229f7a051b7d5853f8c6d07c",
+    "bytes": 3099
+  },
+  "evidence/full-stack/figures/pr4/latency-percentiles.png": {
+    "sha256": "c6080d323c2e904755e3174f55bc97a457ed9fcba672892779eba6acfb7efa6d",
+    "bytes": 267071
+  },
+  "evidence/full-stack/figures/pr4/accepted-by-time.png": {
+    "sha256": "70fd1cd1845987bd1472d2bc4f50b633815ec784e1328dbe40c3ed7b2a0b163e",
+    "bytes": 128334
+  },
+  "evidence/full-stack/figures/pr4/latency-percentiles.pdf": {
+    "sha256": "d0cde83f689ba749a9fc367060bbffcfceacf5872ddb9239f14f46827c7403c3",
+    "bytes": 50731
+  },
+  "evidence/full-stack/figures/pr4/accepted-by-time.pdf": {
+    "sha256": "fd612fdda3904cb07eadf5653d28b561373080247d5dbb46f1f58ac5c835b03c",
+    "bytes": 61464
+  },
+  "evidence/full-stack/figures/final-stack/quantile-effects.pdf": {
+    "sha256": "3bd099fe91ac0d99b92983dfaf1d32d387ae3bff8567ade050e2c68cb378ceb7",
+    "bytes": 21713
+  },
+  "evidence/full-stack/figures/final-stack/quantile-effects.png": {
+    "sha256": "b8e6fdd3e35d71295add87aa153841a844e7fe7b5a4e062e2dc453beb3c34341",
+    "bytes": 121643
+  },
+  "evidence/full-stack/figures/final-stack/quantile-effects.json": {
+    "sha256": "4483f8e0f843cc90158a27a9592ab074919e3b1b5169cba7728f8bf7e0130133",
+    "bytes": 2979
+  },
+  "evidence/full-stack/figures/final-stack/latency-percentiles.png": {
+    "sha256": "80541f499b75de3c556ebc991735680bfe9612fd367f4fe36f5d62aa1247f55f",
+    "bytes": 271010
+  },
+  "evidence/full-stack/figures/final-stack/accepted-by-time.png": {
+    "sha256": "ef072a1b5979b7670513d620670610c4e6bc4eb173dd9ff28a05c1ec45067498",
+    "bytes": 139942
+  },
+  "evidence/full-stack/figures/final-stack/latency-percentiles.pdf": {
+    "sha256": "6a58f868a901346b401a9771341ce990b3f246b744656acd067f5f23337e198b",
+    "bytes": 51952
+  },
+  "evidence/full-stack/figures/final-stack/accepted-by-time.pdf": {
+    "sha256": "8f2214531ac305d0541390ad5ef69e55cfec5eebc83ebfde68b3163c434537c1",
+    "bytes": 61074
+  }
+}

@@ -1,0 +1,710 @@
+{
+  "1-original": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 995,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 9
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block1/1-original.jsonl",
+    "sha256": "0a4fe551af8f85b3f983ae26557827e7f68dabd8c71e00e7d08d0726fd4c163d",
+    "audit_s": 36.298393202
+  },
+  "1-main": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 966,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 38
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block1/1-main.jsonl",
+    "sha256": "c0286faea822ff1ff332ebc0ca5caa5e5efaa695fc0cdc9185503218fb072cdd",
+    "audit_s": 31.506080304
+  },
+  "1-pr1": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 1000,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 4
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block1/1-pr1.jsonl",
+    "sha256": "e6109e1ef3ffcf6758265d97a305d1d7d8a4f2e8e74147c0b334117b84f2459a",
+    "audit_s": 31.090370819
+  },
+  "1-pr2": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 953,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 51
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block1/1-pr2.jsonl",
+    "sha256": "59b8da473ec1e1d3eb422398ab3ac94989f01b4e641b6eea853afe65e9590398",
+    "audit_s": 31.245000264
+  },
+  "1-pr3": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 1004,
+      "warmup": 110,
+      "measured": 894
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block1/1-pr3.jsonl",
+    "sha256": "5cffcd59531488bd04b726bede6e51613a7932bf83e5b78ff2e79b836f7eb547",
+    "audit_s": 31.588290191
+  },
+  "1-pr4": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 1004,
+      "warmup": 110,
+      "measured": 894
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block1/1-pr4.jsonl",
+    "sha256": "372914ec565326697cd920a6f41389a1efd34a5b1fed21c14f3ab898e32bed2d",
+    "audit_s": 41.25517066
+  },
+  "2-original": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 954,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 50
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block2/2-original.jsonl",
+    "sha256": "e9f46698b8eaf7ac9163c4a3e178a395e9abd7f6aecfd98be36c5312ae66982c",
+    "audit_s": 35.696612821
+  },
+  "2-main": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 998,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 6
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block2/2-main.jsonl",
+    "sha256": "326d4048b718a2395ddeae50395c2703879050ae1a4088f534dfe6052e13831f",
+    "audit_s": 31.511666003
+  },
+  "2-pr1": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 999,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 5
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block2/2-pr1.jsonl",
+    "sha256": "9969479a61a2625b6b7473973ee0af6ede4739c201858c7fcb55917e95140f64",
+    "audit_s": 30.97701725
+  },
+  "2-pr2": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 973,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 31
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block2/2-pr2.jsonl",
+    "sha256": "d045ca461f651175b50ad21d459ebad31087769e63b87942696015dbf07eab12",
+    "audit_s": 31.196900907
+  },
+  "2-pr3": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 1004,
+      "warmup": 110,
+      "measured": 894
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block2/2-pr3.jsonl",
+    "sha256": "69c0e9b70001baea0a9eee0d2fe3e35e81943c849edfb72eeb35c334204621d7",
+    "audit_s": 32.000737089
+  },
+  "2-pr4": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 1004,
+      "warmup": 110,
+      "measured": 894
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block2/2-pr4.jsonl",
+    "sha256": "fd95d591ac207ffe46400b7ade1349a398e262d82be40f172bf410abca13bee1",
+    "audit_s": 40.284037755
+  },
+  "3-original": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 999,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 5
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block3/3-original.jsonl",
+    "sha256": "41cef5983b887621a80c55c0de6a171669d3c5eb854436a507ea35776a0cc123",
+    "audit_s": 36.374017762
+  },
+  "3-main": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 999,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 5
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block3/3-main.jsonl",
+    "sha256": "74c4cbb860f1f8ef9ccd5791a1763c3429756c30f7d5cd1c53c880651e6914b1",
+    "audit_s": 31.217743329
+  },
+  "3-pr1": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 996,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 8
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block3/3-pr1.jsonl",
+    "sha256": "4670ffeb9ed822aa067e8aa88247c0bb541a30b79b768462801f104fa3ea0abe",
+    "audit_s": 30.931329031
+  },
+  "3-pr2": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 998,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 6
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block3/3-pr2.jsonl",
+    "sha256": "2fa67ee4eb2b5acd801e2cd70ae461e39769845b217af0af11ed5fd10508c094",
+    "audit_s": 31.123784061
+  },
+  "3-pr3": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 1004,
+      "warmup": 110,
+      "measured": 894
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block3/3-pr3.jsonl",
+    "sha256": "ee98dbccdbb6c11a9b7ce04d97dc03436bc50647535be2260bf51919531ad3f6",
+    "audit_s": 31.537349072
+  },
+  "3-pr4": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 1004,
+      "warmup": 110,
+      "measured": 894
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block3/3-pr4.jsonl",
+    "sha256": "5d464f5e34850009fee4512553d1786d0285ff58e669ce91cfd69fa1cf334cb2",
+    "audit_s": 39.655531733
+  },
+  "4-original": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 996,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 8
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block4/4-original.jsonl",
+    "sha256": "4c65040bf590419df6b8eaa03eaac72cb9b5b08bbd261552262c1597df6d520a",
+    "audit_s": 36.333080039
+  },
+  "4-main": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 972,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 32
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block4/4-main.jsonl",
+    "sha256": "269feaa885cf6d8168e282e2cace59584e6bb930795353a1d2952fdbd8eff976",
+    "audit_s": 31.285641296
+  },
+  "4-pr1": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 971,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 33
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block4/4-pr1.jsonl",
+    "sha256": "c95cf70b84ebd9ddb094d7422f81a2253153eb9975dcb99e1890d0c4110ac2fa",
+    "audit_s": 30.811208715
+  },
+  "4-pr2": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 944,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 60
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block4/4-pr2.jsonl",
+    "sha256": "62883716ee608b0c6621738daf78c8c1b98095ad4aac38fcbc97f6c62eb70660",
+    "audit_s": 30.67987562
+  },
+  "4-pr3": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 1004,
+      "warmup": 110,
+      "measured": 894
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block4/4-pr3.jsonl",
+    "sha256": "96e779b360f7e0905a4367609cb3eef7ac203c33c2a14598c039f1ad605b665c",
+    "audit_s": 31.945113873
+  },
+  "4-pr4": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 1004,
+      "warmup": 110,
+      "measured": 894
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block4/4-pr4.jsonl",
+    "sha256": "5527bc0759036aa33a8cc820e5f03e4d4dcbb1d607cdf55126df14c489a44e5c",
+    "audit_s": 40.070357069
+  },
+  "5-original": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 948,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 56
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block5/5-original.jsonl",
+    "sha256": "3c1bea26e955a174ccaa69a5c3b83f918d4004b60438eded5337cd4e4c63a1bd",
+    "audit_s": 32.177383506
+  },
+  "5-main": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 995,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 9
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block5/5-main.jsonl",
+    "sha256": "a17cde41a58dd45322a00472eaebb977a9ac52a39bf13d97105b716564ed4b25",
+    "audit_s": 26.379530831
+  },
+  "5-pr1": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 967,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 37
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block5/5-pr1.jsonl",
+    "sha256": "b7c1bb8c5bf4e5116f2c6de57b08a7852f75808a528181f7025f70c52823d5db",
+    "audit_s": 26.487293226
+  },
+  "5-pr2": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 970,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 34
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block5/5-pr2.jsonl",
+    "sha256": "013e31314e52bc7f0ace6434f8335709d03d4ebea057cbb924c15abf098ff2d6",
+    "audit_s": 26.248655088
+  },
+  "5-pr3": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 1004,
+      "warmup": 110,
+      "measured": 894
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block5/5-pr3.jsonl",
+    "sha256": "b0c04681f4dec0cc0051d4957f0cac8cfef55f9646e787256ca4cdc9862c8b8f",
+    "audit_s": 28.148640701
+  },
+  "5-pr4": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 1004,
+      "warmup": 110,
+      "measured": 894
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block5/5-pr4.jsonl",
+    "sha256": "49737d0c0e93764b70f0a17dd5389d4fe6d368f24f7c513798f6314522ce12c1",
+    "audit_s": 27.435378799
+  },
+  "6-original": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 969,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 35
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block6/6-original.jsonl",
+    "sha256": "d5f6f014e41d7c6bb2ec7c666ca7c53e7f3185fc15687682e0236273c8488c1d",
+    "audit_s": 32.61559407
+  },
+  "6-main": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 990,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 14
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block6/6-main.jsonl",
+    "sha256": "eccd77e6bbf19a2471cf9464de229b9f4b4fab26dfbce080a25ebd82a32a9c13",
+    "audit_s": 26.411464322
+  },
+  "6-pr1": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 1000,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 4
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block6/6-pr1.jsonl",
+    "sha256": "4a0f2ead41f8bfcae7e0d41b2497a8a3c8c4c4932061218be5dc64a7f87c72d5",
+    "audit_s": 26.482397903
+  },
+  "6-pr2": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 966,
+      "warmup": 110,
+      "measured": 894,
+      "rejected_or_no_trajectory": 38
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block6/6-pr2.jsonl",
+    "sha256": "4886d8103ec9472a05c9ede96091030cfdcd3f9edd6e4367fa1086d44484b6ef",
+    "audit_s": 26.367572299
+  },
+  "6-pr3": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 1004,
+      "warmup": 110,
+      "measured": 894
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block6/6-pr3.jsonl",
+    "sha256": "95d3e0355e8806cbf9d04f4183e1d946d375fcbcaea92c0479e6fd9e8a80540f",
+    "audit_s": 27.853629741
+  },
+  "6-pr4": {
+    "completed": true,
+    "newly_rejected": 0,
+    "expected": 1004,
+    "events": {
+      "started": 1004,
+      "finished": 1004
+    },
+    "outcomes": {
+      "accepted": 1004,
+      "warmup": 110,
+      "measured": 894
+    },
+    "unfinished": [],
+    "exit": 0,
+    "journal": "/tmp/rdk-native-stack-20261118/offline-audit/block6/6-pr4.jsonl",
+    "sha256": "c281c50edeee81401d32431ca099dd388dd22dac50fc2bd37c0d89c684a8a96f",
+    "audit_s": 27.764574281
+  }
+}
