@@ -28,6 +28,10 @@ const (
 // CostFunc is the function to minimize.
 type CostFunc func(context.Context, []float64) float64
 
+// BatchCostFunc evaluates count configurations in a flat row-major input array.
+// It must implement the same metric as its paired CostFunc and be concurrency-safe.
+type BatchCostFunc func(ctx context.Context, inputs []float64, count int, scores []float64)
+
 // SeedSolveMetaData meta data about how a seed did
 type SeedSolveMetaData struct {
 	Attempts int

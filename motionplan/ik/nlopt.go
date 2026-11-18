@@ -40,6 +40,7 @@ const (
 
 // NloptIK can solve IK problems with nlopt.
 type NloptIK struct {
+	batchCost     BatchCostFunc
 	maxIterations int
 	logger        logging.Logger
 
@@ -58,6 +59,9 @@ type NloptIK struct {
 	// Reused across Solve calls to avoid per-call *rand.Rand + *rand.Source allocation.
 	rng *rand.Rand
 }
+
+// SetBatchCost installs an optional equivalent batch evaluator before solving.
+func (ik *NloptIK) SetBatchCost(batch BatchCostFunc) { ik.batchCost = batch }
 
 // CreateNloptSolver creates an nloptIK object that can perform gradient descent on functions. The parameters are the limits
 // of the solver, a logger, and the number of iterations to run. If the iteration count is less than 1, it will be set
@@ -84,9 +88,11 @@ func CreateNloptSolver(
 }
 
 type nloptSeedState struct {
-	seed                   []float64
-	lowerBound, upperBound []float64
-	jump                   []float64
+	batchCost                BatchCostFunc
+	batchInputs, batchScores []float64
+	seed                     []float64
+	lowerBound, upperBound   []float64
+	jump                     []float64
 
 	meta string
 
@@ -128,6 +134,11 @@ func (ik *NloptIK) newSeedState(ctx context.Context, seedNumber int, minFunc Cos
 
 	// Per-joint finite-difference step for the gradient computation in getMinFunc.
 	ss.jump = make([]float64, len(seed))
+	ss.batchCost = ik.batchCost
+	if ss.batchCost != nil {
+		ss.batchInputs = make([]float64, (len(seed)+1)*len(seed))
+		ss.batchScores = make([]float64, len(seed)+1)
+	}
 	for i := range ss.jump {
 		ss.jump[i] = defaultJump
 	}
@@ -180,6 +191,30 @@ func (nss *nloptSeedState) getMinFunc(ctx context.Context, minFunc CostFunc, ite
 		}
 		if stopCanceled() {
 			return 0
+		}
+		if nss.batchCost != nil && len(gradient) > 0 {
+			dim := len(checkVals)
+			copy(nss.batchInputs[:dim], checkVals)
+			for i := range gradient {
+				row := nss.batchInputs[(i+1)*dim : (i+2)*dim]
+				copy(row, checkVals)
+				row[i] += nss.jump[i]
+				for row[i] >= nss.upperBound[i] {
+					row[i] -= 10 * nss.jump[i]
+				}
+			}
+			nss.batchCost(ctx, nss.batchInputs, dim+1, nss.batchScores)
+			if stopCanceled() {
+				return 0
+			}
+			for i := range gradient {
+				gradient[i] = (nss.batchScores[i+1] - nss.batchScores[0]) / (nss.batchInputs[(i+1)*dim+i] - checkVals[i])
+			}
+			if nss.logger.GetLevel() <= logging.DEBUG {
+				nss.logger.Debugf("\t minfunc seed:%s vals: %v dist: %0.2f gradient: %v",
+					nss.meta, logging.FloatArrayFormat{"%0.5f", checkVals}, nss.batchScores[0], logging.FloatArrayFormat{"", gradient})
+			}
+			return nss.batchScores[0]
 		}
 		dist := minFunc(ctx, checkVals)
 		if stopCanceled() {

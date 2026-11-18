@@ -42,6 +42,13 @@ func CreateCombinedIKSolver(
 	return ik, nil
 }
 
+// SetBatchCost configures all child solvers before Solve is called.
+func (ik *CombinedIK) SetBatchCost(batch BatchCostFunc) {
+	for _, solver := range ik.solvers {
+		solver.SetBatchCost(batch)
+	}
+}
+
 // Solve will initiate solving for the given position in all child solvers, seeding with the specified initial joint
 // positions. If unable to solve, the returned error will be non-nil.
 func (ik *CombinedIK) Solve(ctx context.Context,
