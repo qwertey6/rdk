@@ -29,6 +29,15 @@ type VoxelSDF struct {
 	occMargin float64
 }
 
+// MemoryBytes estimates retained field storage, including fixed metadata.
+// Construction scratch is temporary and is not included in this cache budget.
+func (s *VoxelSDF) MemoryBytes() int64 {
+	if s == nil {
+		return 0
+	}
+	return int64(cap(s.dist))*4 + 128
+}
+
 // maxSDFVoxels bounds the grid size; the resolution is coarsened to fit.
 const maxSDFVoxels = 6_000_000
 

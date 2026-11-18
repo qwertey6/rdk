@@ -143,7 +143,7 @@ func collisionSpecifications(
 func checkCollisionsHinted(
 	gg, other []spatialmath.Geometry,
 	otherPre []namedGeom,
-	allowed map[[2]string]bool,
+	allowance *collisionAllowances,
 	collisionBufferMM float64,
 	collectAllCollisions bool,
 	hint *atomic.Pointer[[2]string],
@@ -155,17 +155,13 @@ func checkCollisionsHinted(
 	// every production caller); a name present in both merely costs a
 	// redundant symmetric check, never a wrong answer.
 	sameSet := len(gg) == len(other) && len(gg) > 0 && &gg[0] == &other[0]
-	// For large allow lists, one name-set build beats scanning the list per
-	// geometry; for small ones the scan is cheaper than the map.
-	var allowNames map[string]bool
-	if len(allowed) > 16 {
-		allowNames = make(map[string]bool, len(allowed)*2)
-		for k := range allowed {
-			allowNames[k[0]] = true
-			allowNames[k[1]] = true
-		}
+	// Both indexes are immutable for this checker's lifetime. Rebuilding the
+	// name set for every state needlessly allocates and scans the same pairs.
+	var allowed map[[2]string]bool
+	if allowance != nil {
+		allowed = allowance.pairs
 	}
-	ggN := nameGeoms(gg, 0, allowed, allowNames)
+	ggN := nameGeoms(gg, 0, allowance)
 	defer putNamedGeoms(ggN)
 	otherN := ggN
 	switch {
@@ -176,7 +172,7 @@ func checkCollisionsHinted(
 		sameSet = false
 		otherN = otherPre
 	case !sameSet:
-		otherN = nameGeoms(other, len(gg), allowed, allowNames)
+		otherN = nameGeoms(other, len(gg), allowance)
 		defer putNamedGeoms(otherN)
 	}
 
@@ -239,18 +235,31 @@ func checkCollisionsHinted(
 		return false, nil
 	}
 
-	// skipPair mirrors the old skipCollisionCheck: identical names never pair,
-	// and allowed pairs are skipped. Hashing an allowed key is only worth it
-	// when both geometries appear somewhere in the allow list - inAllow is
-	// precomputed per geometry so the common no-allows pair costs two bool
-	// reads instead of a string-pair hash.
+	// The immutable compact index supplies exact allowance membership without
+	// hashing a pair of strings for every pair. Larger name sets retain the
+	// map path.
+	compactAllowances := allowance != nil && allowance.compact != nil
 	skipPair := func(x, y *namedGeom) bool {
 		if x.name == y.name {
 			return true
 		}
-		return x.inAllow && y.inAllow && allowed[canonicalPair(x.name, y.name)]
+		if compactAllowances {
+			return x.allowBits.partners&y.allowBits.self != 0
+		}
+		if !x.inAllow || !y.inAllow {
+			return false
+		}
+		return allowed[canonicalPair(x.name, y.name)]
 	}
 
+	// Remember completed ordered pairs from the hint probe within this call.
+	// Geometry objects and their poses are unchanged during the pair loop, so
+	// testing that exact pair again cannot add evidence. Keep both orientations
+	// of self pairs: native arithmetic need not be bit-symmetric. Collect-all
+	// callers retain their existing reporting behavior, including duplicates.
+	type checkedPair struct{ x, y *namedGeom }
+	var hinted [2]checkedPair
+	nHinted := 0
 	// Hint fast path: try the previously-violated pair first.
 	if hint != nil {
 		if h := hint.Load(); h != nil {
@@ -271,7 +280,12 @@ func checkCollisionsHinted(
 				if y == nil || skipPair(x, y) {
 					return false, nil
 				}
-				return checkOnePair(x, y)
+				stop, err := checkOnePair(x, y)
+				if err == nil && !stop && !collectAllCollisions && x.bok && y.bok {
+					hinted[nHinted] = checkedPair{x, y}
+					nHinted++
+				}
+				return stop, err
 			}
 			for _, pair := range [2][2]string{{h[0], h[1]}, {h[1], h[0]}} {
 				stop, err := tryHint(pair[0], pair[1])
@@ -296,6 +310,10 @@ func checkCollisionsHinted(
 			if skipPair(x, y) {
 				continue
 			}
+			if (nHinted > 0 && hinted[0].x == x && hinted[0].y == y) ||
+				(nHinted > 1 && hinted[1].x == x && hinted[1].y == y) {
+				continue
+			}
 			stop, err := checkOnePair(x, y)
 			if err != nil {
 				return nil, math.Inf(-1), err
@@ -313,9 +331,10 @@ func checkCollisionsHinted(
 // inAllow records whether the name appears anywhere in the allowed map, so
 // pairs with no possible allowance skip the string-pair hash entirely.
 type namedGeom struct {
-	name    string
-	g       spatialmath.Geometry
-	inAllow bool
+	name      string
+	g         spatialmath.Geometry
+	inAllow   bool
+	allowBits collisionAllowanceBits
 	// Bounding sphere in world coordinates, computed once per geometry per
 	// call: deriving it per pair made pose decomposition (DualQuaternion.Point
 	// under BoundingSphere) the hottest non-GC entry in mesh-heavy scenes.
@@ -329,7 +348,7 @@ var namedGeomPool = sync.Pool{New: func() any { s := make([]namedGeom, 0, 64); r
 // nameGeoms builds the named slice for one input set. Unnamed geometries get
 // synthetic names; unnamedBase keeps them distinct across the two sets of one
 // call. Return through putNamedGeoms.
-func nameGeoms(geoms []spatialmath.Geometry, unnamedBase int, allowed map[[2]string]bool, allowNames map[string]bool) []namedGeom {
+func nameGeoms(geoms []spatialmath.Geometry, unnamedBase int, allowance *collisionAllowances) []namedGeom {
 	out := (*namedGeomPool.Get().(*[]namedGeom))[:0]
 	for _, g := range geoms {
 		label := g.Label()
@@ -339,15 +358,11 @@ func nameGeoms(geoms []spatialmath.Geometry, unnamedBase int, allowed map[[2]str
 		}
 		ng := namedGeom{name: label, g: g}
 		ng.bcenter, ng.brad, ng.bok = spatialmath.BoundingSphere(g)
-		switch {
-		case allowNames != nil:
-			ng.inAllow = allowNames[label]
-		case len(allowed) > 0:
-			for k := range allowed {
-				if k[0] == label || k[1] == label {
-					ng.inAllow = true
-					break
-				}
+		if allowance != nil {
+			if allowance.compact != nil {
+				ng.allowBits = allowance.compact[label]
+			} else {
+				ng.inAllow = allowance.names[label]
 			}
 		}
 		out = append(out, ng)
@@ -358,16 +373,8 @@ func nameGeoms(geoms []spatialmath.Geometry, unnamedBase int, allowed map[[2]str
 // prenameGeoms builds a long-lived namedGeom slice for a geometry set whose
 // poses never change (the checker's static side). The synthetic-name base for
 // unnamed geometries is far above anything the per-call moving side uses.
-func prenameGeoms(geoms []spatialmath.Geometry, allowed map[[2]string]bool) []namedGeom {
-	var allowNames map[string]bool
-	if len(allowed) > 16 {
-		allowNames = make(map[string]bool, len(allowed)*2)
-		for k := range allowed {
-			allowNames[k[0]] = true
-			allowNames[k[1]] = true
-		}
-	}
-	pooled := nameGeoms(geoms, 1<<20, allowed, allowNames)
+func prenameGeoms(geoms []spatialmath.Geometry, allowance *collisionAllowances) []namedGeom {
+	pooled := nameGeoms(geoms, 1<<20, allowance)
 	out := make([]namedGeom, len(pooled))
 	copy(out, pooled)
 	putNamedGeoms(pooled)
@@ -389,11 +396,45 @@ func canonicalPair(a, b string) [2]string {
 	return [2]string{b, a}
 }
 
-// Process a []Collision into a map for easy lookups.
-func makeAllowedCollisionsLookup(allowedCollisions []Collision) map[[2]string]bool {
+// collisionAllowances owns immutable indexes shared by concurrent state checks.
+// Prepare every nonempty name index once; even a short map scan is repeated
+// for each geometry at every state if it remains in the hot path.
+type collisionAllowances struct {
+	pairs   map[[2]string]bool
+	names   map[string]bool
+	compact map[string]collisionAllowanceBits
+}
+
+// Zero identifies an unknown name. Membership is symmetric and uses all 64
+// bits; a larger registry falls back to the original string-pair map.
+type collisionAllowanceBits struct{ self, partners uint64 }
+
+func makeAllowedCollisionsLookup(allowedCollisions []Collision) *collisionAllowances {
 	ignoreList := make(map[[2]string]bool, len(allowedCollisions))
 	for _, c := range allowedCollisions {
 		ignoreList[canonicalPair(c.name1, c.name2)] = true
 	}
-	return ignoreList
+	allowance := &collisionAllowances{pairs: ignoreList}
+	if len(ignoreList) > 0 {
+		allowance.names = make(map[string]bool, len(ignoreList)*2)
+		for pair := range ignoreList {
+			allowance.names[pair[0]] = true
+			allowance.names[pair[1]] = true
+		}
+		if len(allowance.names) <= 64 {
+			allowance.compact = make(map[string]collisionAllowanceBits, len(allowance.names))
+			bit := uint64(1)
+			for name := range allowance.names {
+				allowance.compact[name] = collisionAllowanceBits{self: bit}
+				bit <<= 1
+			}
+			for pair := range ignoreList {
+				a, b := allowance.compact[pair[0]], allowance.compact[pair[1]]
+				a.partners |= b.self
+				b.partners |= a.self
+				allowance.compact[pair[0]], allowance.compact[pair[1]] = a, b
+			}
+		}
+	}
+	return allowance
 }

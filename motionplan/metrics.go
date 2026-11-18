@@ -55,8 +55,10 @@ type StateFS struct {
 	// for the exact-check fallback. Both are shared across the checker's
 	// three collision constraints. coverSet is `any` to keep this file free
 	// of the cover machinery's internals.
-	coverSet     any
-	partialGeoms map[string]*referenceframe.GeometriesInFrame
+	coverSet           any
+	partialGeoms       map[string]*referenceframe.GeometriesInFrame
+	geometryEvaluation *referenceframe.GeometryEvaluation
+	shareGeometryFK    bool
 }
 
 // Geometries get Geometries and cache

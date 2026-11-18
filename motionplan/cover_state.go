@@ -5,6 +5,7 @@ import (
 	"sync"
 
 	"github.com/golang/geo/r3"
+	"gonum.org/v1/gonum/num/quat"
 
 	"go.viam.com/rdk/referenceframe"
 	"go.viam.com/rdk/spatialmath"
@@ -150,11 +151,17 @@ func coverSetFor(state *StateFS, fs *referenceframe.FrameSystem, table *frameCov
 		return state.coverSet.(*stateCoverSet)
 	}
 	cs := stateCoverSetPool.Get().(*stateCoverSet)
-	fk := fs.NewFrameToWorld(state.Configuration)
-	defer fk.Release()
+	var poseQT func(string) (quat.Number, r3.Vector, error)
+	if state.shareGeometryFK && state.geometryEvaluation != nil {
+		poseQT = state.geometryEvaluation.PoseQT
+	} else {
+		fk := fs.NewFrameToWorld(state.Configuration)
+		defer fk.Release()
+		poseQT = fk.PoseQT
+	}
 	for i := range table.entries {
 		e := &table.entries[i]
-		q, tr, err := fk.PoseQT(e.parentName)
+		q, tr, err := poseQT(e.parentName)
 		if err != nil {
 			cs.failed = true
 			break
@@ -197,6 +204,9 @@ func materializedSubset(
 	if len(frames) == 0 {
 		return nil, nil
 	}
+	if state.geometryEvaluation != nil {
+		return state.geometryEvaluation.Subset(frames)
+	}
 	if state.partialGeoms == nil {
 		state.partialGeoms = map[string]*referenceframe.GeometriesInFrame{}
 	}
@@ -207,6 +217,7 @@ func materializedSubset(
 		}
 	}
 	if len(missing) > 0 {
+
 		got, err := referenceframe.FrameSystemGeometriesForFrames(fs, state.Configuration, missing)
 		if err != nil {
 			return nil, err

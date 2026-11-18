@@ -180,7 +180,7 @@ func TestUnnamedGeometryNaming(t *testing.T) {
 	geom1.SetLabel("")
 	geom2 := bc1.Transform(spatial.NewPoseFromPoint(r3.Vector{X: 1}))
 	geom2.SetLabel("")
-	named := nameGeoms([]spatial.Geometry{geom1, geom2}, 0, nil, nil)
+	named := nameGeoms([]spatial.Geometry{geom1, geom2}, 0, nil)
 	defer putNamedGeoms(named)
 	test.That(t, len(named), test.ShouldEqual, 2)
 	test.That(t, named[0].name, test.ShouldStartWith, unnamedCollisionGeometryPrefix)

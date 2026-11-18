@@ -46,6 +46,11 @@ type CollisionConstraints struct {
 // ConstraintChecker is a convenient wrapper for constraint handling which is likely to be common among most motion
 // planners. Including a constraint handler as an anonymous struct member allows reuse.
 type ConstraintChecker struct {
+	motionBounds         *referenceframe.MotionBounds
+	streaming            bool
+	nativeCallbacks      bool
+	cache                *CollisionCache
+	geometry             *referenceframe.PreparedGeometries
 	collisionConstraints CollisionConstraints
 	topoConstraint       StateFSConstraint
 
@@ -54,9 +59,15 @@ type ConstraintChecker struct {
 	logger logging.Logger
 }
 
+// HasNativeMotionBounds reports built-in constraints and complete recognized
+// native frame preparation. It does not certify any state or path as valid.
+func (c *ConstraintChecker) HasNativeMotionBounds() bool {
+	return c != nil && c.nativeCallbacks && c.motionBounds != nil
+}
+
 // NewEmptyConstraintChecker - creates a ConstraintChecker with nothing.
 func NewEmptyConstraintChecker(logger logging.Logger) *ConstraintChecker {
-	return &ConstraintChecker{logger: logger}
+	return &ConstraintChecker{logger: logger, streaming: true}
 }
 
 // NewConstraintChecker - creates a ConstraintChecker with all the params.
@@ -81,6 +92,26 @@ func NewConstraintChecker(
 		constraints = &Constraints{}
 	}
 	handler := NewEmptyConstraintChecker(logger)
+	handler.nativeCallbacks = true
+
+	var stationary []spatialmath.Geometry
+	if obstaclesInWorldFrame != nil {
+		stationary = obstaclesInWorldFrame.Geometries()
+	}
+	handler.motionBounds = fs.PrepareMotionBounds(stationary...)
+	if obstaclesInWorldFrame != nil {
+		for _, g := range obstaclesInWorldFrame.Geometries() {
+			center, radius, ok := spatialmath.BoundingSphere(g)
+			extent := center.Norm() + radius
+			if !ok || radius < 0 || extent > 1e6 || math.IsNaN(extent) || math.IsInf(extent, 0) {
+				handler.motionBounds = nil
+				break
+			}
+		}
+	}
+
+	handler.cache = cache
+	handler.geometry = fs.PrepareGeometries(movingFrameNames)
 	handler.collisionBufferMM = collisionBufferMM
 
 	frameSystemGeometries, err := referenceframe.FrameSystemGeometriesLinearInputs(fs, seedMap)
@@ -139,6 +170,8 @@ func NewConstraintChecker(
 
 // SetCollisionConstraints set the collision constraints explicitly
 func (c *ConstraintChecker) SetCollisionConstraints(cs CollisionConstraints) {
+	c.motionBounds = nil
+	c.nativeCallbacks = false
 	c.collisionConstraints = cs
 }
 
@@ -287,6 +320,19 @@ func checkOrientationConstraintEval(frame string, e *OrientationConstraintEval, 
 // per plan, and per-call span creation plus exporter wakeups measurably
 // dominated planning time once the checks themselves became cheap.
 func (c *ConstraintChecker) CheckStateFSConstraints(ctx context.Context, state *StateFS) (float64, error) {
+	if c.geometry != nil {
+		state.geometryEvaluation = c.geometry.Evaluate(state.Configuration)
+		// MotionBounds preparation recognizes every native frame, including
+		// fixed frames. Unknown frames or custom callbacks retain separate FK
+		// evaluations and their original call behavior.
+		state.shareGeometryFK = c.nativeCallbacks && c.motionBounds != nil
+		defer func() {
+			state.geometryEvaluation.Release()
+			state.geometryEvaluation = nil
+			state.shareGeometryFK = false
+		}()
+	}
+
 	// The cover evaluation is shared by the collision constraints below and
 	// recycled once this state check completes.
 	defer releaseCoverSet(state)
@@ -300,6 +346,10 @@ func (c *ConstraintChecker) CheckStateFSConstraints(ctx context.Context, state *
 		}
 	}
 
+	return c.checkStateCollisions(state)
+}
+
+func (c *ConstraintChecker) checkStateCollisions(state *StateFS) (float64, error) {
 	closest := math.Inf(1)
 
 	for _, pair := range []struct {
@@ -381,31 +431,31 @@ func (c *ConstraintChecker) CheckStateConstraintsAcrossSegmentFS(
 	resolution float64,
 	checkFinal bool,
 ) (*SegmentFS, error) {
-	interpolatedConfigurations, err := InterpolateSegmentFS(ci, resolution)
+	validation, err := c.SegmentValidation(ci, resolution)
 	if err != nil {
 		return nil, err
 	}
+	return checkSegmentInOrder(ctx, ci, validation, checkFinal)
+}
 
-	var lastGood *referenceframe.LinearInputs
-
-	end := len(interpolatedConfigurations)
+func checkSegmentInOrder(ctx context.Context, ci *SegmentFS, validation *SegmentValidation, checkFinal bool) (*SegmentFS, error) {
+	samples := validation.Samples
+	end := samples.Len()
 	if !checkFinal {
 		end--
 	}
-	// Clearance alone does not bound link displacement per interpolation step.
-	// Inspect every required sample until a conservative motion bound is available.
 	for i := 0; i < end; i++ {
-		interpConfig := interpolatedConfigurations[i]
-		interpC := &StateFS{FS: ci.FS, Configuration: interpConfig}
-		_, err := c.CheckStateFSConstraints(ctx, interpC)
+		_, _, err := validation.Check(ctx, i, 0)
+		if ctx.Err() != nil {
+			return nil, ctx.Err()
+		}
 		if err != nil {
 			if i == 0 {
 				// fail on start pos
 				return nil, err
 			}
-			return &SegmentFS{StartConfiguration: ci.StartConfiguration, EndConfiguration: lastGood, FS: ci.FS}, err
+			return &SegmentFS{StartConfiguration: ci.StartConfiguration, EndConfiguration: samples.At(i - 1).Copy(), FS: ci.FS}, err
 		}
-		lastGood = interpC.Configuration
 
 	}
 
@@ -645,8 +695,11 @@ func NewCollisionConstraintFS(
 				near[b.frameName] = true
 			}
 			for _, ub := range uncoveredBounds {
-				if a.bound.Center.Sub(ub.Center).Norm()-a.bound.R-ub.R <= sdfClearThreshold {
+				gap := a.bound.Center.Sub(ub.Center).Norm() - a.bound.R - ub.R
+				if gap <= sdfClearThreshold {
 					near[a.frameName] = true
+				} else {
+					selfMin = math.Min(selfMin, gap)
 				}
 			}
 		}
@@ -680,17 +733,25 @@ func NewCollisionConstraintFS(
 		// (obstacle / robot-vs-robot / self-collision); whichever runs first for
 		// this state populates it, the others hit the cache. Safe because all
 		// three closures captured the same movingFrameNames.
-		if state.movingGeometries == nil {
-			g, err := referenceframe.FrameSystemGeometriesForFrames(state.FS, state.Configuration, movingFrameNames)
+		var internalGeoms []spatialmath.Geometry
+		if state.geometryEvaluation != nil {
+			var err error
+			internalGeoms, err = state.geometryEvaluation.Subset(movingFrameNames)
 			if err != nil {
 				return 0, err
 			}
-			state.movingGeometries = g
-		}
+		} else {
+			if state.movingGeometries == nil {
+				g, err := referenceframe.FrameSystemGeometriesForFrames(state.FS, state.Configuration, movingFrameNames)
+				if err != nil {
+					return 0, err
+				}
+				state.movingGeometries = g
+			}
 
-		var internalGeoms []spatialmath.Geometry
-		for _, geosInFrame := range state.movingGeometries {
-			internalGeoms = append(internalGeoms, geosInFrame.Geometries()...)
+			for _, geosInFrame := range state.movingGeometries {
+				internalGeoms = append(internalGeoms, geosInFrame.Geometries()...)
+			}
 		}
 
 		sdfMin := math.Inf(1)
