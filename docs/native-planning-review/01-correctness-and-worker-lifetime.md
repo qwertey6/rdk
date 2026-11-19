@@ -1,6 +1,8 @@
 motionplan: preserve collision validation and join canceled native workers
 
-Native validation could reuse an edge under the wrong checking context and skip interpolation samples based on clearance without a bound on link movement. This PR scopes validity reuse correctly, restores required collision sampling and exact geometry identity, and joins canceled native search workers before return. The benefit is valid plans and defined worker lifetime; it does not promise lower latency.
+For the accuracy-contract distinction and newer sampling-only comparison, see the [design walkthrough](DESIGN.md#3-pr1-cache-validity-worker-lifetime-and-sampling). The measurements below retain the earlier extraction cohort.
+
+Native validation could reuse an edge under the wrong checking context and skip interpolation samples based on clearance without a bound on link movement. This PR scopes validity reuse correctly, adds finer collision sampling, improves geometry identity, and joins canceled native search workers before return. The benefit is valid plans and defined worker lifetime; it does not promise lower latency.
 
 **PR 1 of 4.** Branch `jake/native-1-correctness` at `a2bc4d795553`, targeting `main`. [Stack overview and whole-stack result](README.md). Diff: runtime **+192/−71**, tests/fixtures **+474/−4**, 21 files. No reports, charts or benchmark infrastructure land in this PR.
 
@@ -18,13 +20,13 @@ Measured complete-planning change versus its preceding head: **individual scenes
 | Ordered workload: PR 1 | 882 / 882 | 100.491 | 51.38 | 597.07 | 978.76 |
 
 - Scope edge reuse to checker, segment, direction, resolution and endpoint policy.
-- Remove unsafe clearance-based skips; enforce a 0.002-radian joint sampling floor while retaining prismatic units and Cartesian resolution.
+- Remove unsafe clearance-based skips; cap angular interpolation increments at 0.002 radians while retaining prismatic units and Cartesian resolution.
 - Hash exact geometry shape/pose identity; preserve immutable mesh preparation safely and invalidate it on replacement.
 - Cancel IK producers before draining results; request NLopt cancellation from its callback.
 - Cancel and join all launched CBiRRT/roadmap racers, with enough buffered results for losing senders to finish.
 - Preserve regressions for thin/dual-arm collisions and the actual blocked chord returned by the initial extraction.
 
-“Cancellation cleanup” means signaling losing search/IK work to stop and waiting for its required shutdown before returning. A first usable result and all workers exiting are different events. Waiting can expose additional synchronous latency, but avoids leftover work competing with the next plan. Denser required checking can also cost time. PR3 adds conservative acceleration without reinstating the unsafe skip.
+“Cancellation cleanup” means signaling losing search/IK work to stop and waiting for its required shutdown before returning. A first usable result and all workers exiting are different events. Waiting can expose additional synchronous latency, but avoids leftover work competing with the next plan. The proposed denser checking also costs time; whether that policy is required remains an open design decision. PR3 adds conservative acceleration without reinstating the unsafe skip.
 
 ![PR 1 complete-planning latency by percentile; lower is better](evidence/corrected-boundaries/figures/pr1/latency-percentiles.png)
 

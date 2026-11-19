@@ -1,6 +1,16 @@
+# Native planning review
+
+Start with the **[design walkthrough: logic, evidence, and open decisions](DESIGN.md)**. It explains the existing planner, the mechanisms in all four PRs, ownership and cache lifetimes, worked collision examples, and the decisions still needed. Mermaid diagrams and pinned source/test links accompany the explanation.
+
+The **[November 19 sampling-policy experiment](evidence/sampling-policy-20261119/README.md)** compares original native with the same stack under two sampling rules. On the ordered workload, original native averaged **77.95 ms/request**, the finer-grid stack **58.40 ms (25.1% less time)**, and the stack retaining the original sampling rule **48.14 ms (38.2% less time)**. Strict-audit rejections were **27, 0, and 10 / 1,572 attempts**, respectively. These are exploratory planning-replay results, not a physical execution speedup or a general collision guarantee. The [walkthrough](DESIGN.md#8-what-the-experiments-establish) explains uncertainty, tail behavior, path quality, and the measurement boundary.
+
+The report below preserves the **earlier extraction comparison** as a separate cohort. Its per-PR effects and full-stack result must not be pooled with the newer experiment. These documents and figures live on a review-assets branch; they are auxiliary review material, outside the production PR diffs.
+
+## Earlier extraction comparison
+
 The extracted four-PR stack used **21.7% less ordered planning time than frozen original native**, saving **16.89 ms/request** (exploratory 95% interval: 18.7–24.4% less time). Individual scenes used **2.2% less time**, with an interval crossing no change. **Ordered p99 worsened 26.0%: 487.1 → 613.9 ms.** All 6,024 full-stack attempts, including warmup and the duplicate scene, passed the frozen independent audit.
 
-The four dependent branches are extracted and validated against current main `8ab5892be`. [The four draft PRs and exact head/base identities](PULL_REQUESTS.md) are published in `qwertey6/rdk`; the active account has read-only upstream access. Review order is **main ← PR1 ← PR2 ← PR3 ← PR4**. Each branch contains runtime changes and its own regression tests/fixtures. Reports, figures, runners and manifests are auxiliary evidence; none appears in the production diffs.
+The four dependent branches are extracted and validated against the extraction base `8ab5892be`. [The four draft PRs and exact head/base identities](PULL_REQUESTS.md) are published in `qwertey6/rdk`; the active account has read-only upstream access. Review order is **main ← PR1 ← PR2 ← PR3 ← PR4**. Each branch contains runtime changes and its own regression tests/fixtures. Reports, figures, runners and manifests are auxiliary evidence; none appears in the production diffs.
 
 | PR | Branch | Runtime | Tests / fixtures | Files |
 |---|---|---:|---:|---:|
@@ -11,7 +21,7 @@ The four dependent branches are extracted and validated against current main `8a
 
 The combined diff against main is **+2,156/−218 runtime lines** (33 files) and **+3,187/−5 test/fixture lines** (38 files). Per-PR totals differ slightly because two lines change again higher in the stack.
 
-The initial extraction exposed an unsafe intermediate: adding faster FK before the stricter collision checker increased invalid returned paths. Required collision fidelity, exact scene identity and the removal of unsafe clearance skipping now land in PR1. A saved failed trajectory is a regression test. PR3 then accelerates those checks conservatively. This repartition does not change cumulative PR3 or full-stack runtime code; source equivalence is recorded below.
+The initial extraction exposed an unsafe intermediate: adding faster FK before the stricter collision checker increased invalid returned paths. The proposed finer sampling rule, improved scene identity and the removal of unsafe clearance skipping now land in PR1. The finer rule is a policy proposal; its necessity as the production default has not been established. A saved failed trajectory is a regression test. PR3 then accelerates those checks conservatively. This repartition does not change cumulative PR3 or full-stack runtime code; source equivalence is recorded below.
 
 | PR versus preceding head | Individual scenes: total-time change | Ordered: total-time change | Independent blocks |
 |---|---|---|---:|

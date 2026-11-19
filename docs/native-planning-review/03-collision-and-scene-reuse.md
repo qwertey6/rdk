@@ -1,6 +1,8 @@
 motionplan: stream conservative collision checks and reuse scene preparation
 
-After PR1 restores required collision fidelity, this PR reduces repeated geometry and checking work with shared transforms, streaming interpolation and certified motion bounds. It also retains scene distance fields across requests within a fixed memory budget.
+For the geometric argument, limits, and open decisions, see the [design walkthrough](DESIGN.md#5-pr3-collision-work-and-scene-preparation). The measurements below retain the earlier extraction cohort.
+
+After PR1 adds the proposed finer sampling policy, this PR reduces repeated geometry and checking work with shared transforms, streaming interpolation and certified motion bounds. It also retains scene distance fields across requests within a fixed memory budget.
 
 **PR 3 of 4.** Branch `jake/native-3-collision` at `899cedca5585`, targeting `jake/native-2-kinematics`. [Stack overview and whole-stack result](README.md). Diff: runtime **+1050/−87**, tests/fixtures **+1101/−1**, 25 files. No reports, charts or benchmark infrastructure land in this PR.
 
