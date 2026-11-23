@@ -32,7 +32,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          go test -tags viam_rdk_cgo_have_cxx20_rt -count=1 -timeout=10m \
+          go test -ldflags="-extld=$(pwd)/etc/ld_wrapper.sh" -tags viam_rdk_cgo_have_cxx20_rt -count=1 -timeout=10m \
             ./motionplan/ik ./motionplan ./motionplan/armplanning ./referenceframe ./spatialmath \
             -run 'Test(NloptCancellationStopsInFlightSolve|NativeSearchWorkerLifetime|NativeSearchWorkerOverrideLifetime|CheckPathCacheScope|NativeGoalCloudFallbackAndPositionOnly|NativeGoalCostAfterCancellation|AutomaticGoalPreservesNativeArithmetic|NativeGoalKinematicsParity|FinishingBudgetLeavesMandatoryValidation|GuardedFinishingPreservesFallback|GuardedFinishingProbeLimitAllRejected|ExactState.*|MeshUnmarshalInvalidatesPreparation|MeshCacheResetConcurrent|GeometrySetHashCompleteShape|PreparedTransform.*|SegmentSamplesParity|Streaming.*)$'
       - name: Build native server with static NLopt and x264
