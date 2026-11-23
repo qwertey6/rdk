@@ -24,6 +24,8 @@ jobs:
           cache: false
       - name: Record toolchain
         run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           go version
           go env GOOS GOARCH CGO_ENABLED
           c++ --version
