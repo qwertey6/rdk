@@ -1,0 +1,62 @@
+name: Jake experimental native planning server
+on:
+  push:
+    branches: [jake/experimental-native-plan-20261123]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  linux-amd64:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    container:
+      image: ghcr.io/viamrobotics/rdk-focal:amd64-cache
+    env:
+      CGO_ENABLED: '1'
+      GOFLAGS: '-p=2'
+      MISE_GO_SET_GOROOT: 'false'
+      EXP_VERSION: '1.17.0-jake-exp-native-plan.20261123'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v7
+        with:
+          go-version-file: go.mod
+          cache: false
+      - name: Record toolchain
+        run: |
+          go version
+          go env GOOS GOARCH CGO_ENABLED
+          c++ --version
+          pkg-config --modversion nlopt x264
+      - name: Check native implementation regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+          go test -tags viam_rdk_cgo_have_cxx20_rt -count=1 -timeout=10m \
+            ./motionplan/ik ./motionplan ./motionplan/armplanning ./referenceframe ./spatialmath \
+            -run 'Test(NloptCancellationStopsInFlightSolve|NativeSearchWorkerLifetime|NativeSearchWorkerOverrideLifetime|CheckPathCacheScope|NativeGoalCloudFallbackAndPositionOnly|NativeGoalCostAfterCancellation|AutomaticGoalPreservesNativeArithmetic|NativeGoalKinematicsParity|FinishingBudgetLeavesMandatoryValidation|GuardedFinishingPreservesFallback|GuardedFinishingProbeLimitAllRejected|ExactState.*|MeshUnmarshalInvalidatesPreparation|MeshCacheResetConcurrent|GeometrySetHashCompleteShape|PreparedTransform.*|SegmentSamplesParity|Streaming.*)$'
+      - name: Build native server with static NLopt and x264
+        shell: bash
+        run: |
+          set -euo pipefail
+          make server-static GO_BUILD_TAGS_EXTRA=viam_rdk_cgo_have_cxx20_rt TAG_VERSION="$EXP_VERSION"
+          mkdir -p dist
+          cp bin/Linux-x86_64/viam-server-static "dist/viam-server-${EXP_VERSION}-linux-amd64"
+          binary="dist/viam-server-${EXP_VERSION}-linux-amd64"
+          "$binary" -version
+          file "$binary"
+          ldd "$binary" | tee dist/runtime-libraries.txt
+          if grep -q 'not found' dist/runtime-libraries.txt; then exit 1; fi
+          go version -m "$binary" > dist/go-build-info.txt
+          grep -q 'CGO_ENABLED=1' dist/go-build-info.txt
+          if grep -q 'no_cgo' dist/go-build-info.txt; then exit 1; fi
+          printf '%s\n' "$GITHUB_SHA" > dist/SOURCE_COMMIT
+          printf '%s\n' 'Full four-PR stack (76654f793a7559db83e22d81e46fee807bc84439) with only the added JointInterpolationSteps sampling cap removed.' > dist/SAMPLING_POLICY.txt
+          cd dist
+          sha256sum "viam-server-${EXP_VERSION}-linux-amd64" > SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: jake-exp-native-plan-linux-amd64
+          path: dist/
+          retention-days: 14
+          if-no-files-found: error

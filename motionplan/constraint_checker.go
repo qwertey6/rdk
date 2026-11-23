@@ -937,12 +937,6 @@ func segmentStepCount(ci *SegmentFS, resolution float64) (int, error) {
 
 		maxSteps = max(maxSteps, CalculateStepCount(startPos, endPos, resolution))
 		maxSteps = max(maxSteps, calculateJointStepCount(startConfig, endConfig, jointStepSize))
-		// Joint-limit width must not determine collision fidelity: broad limits
-		// previously allowed >0.01-radian gaps even next to thin obstacles.
-		// Preserve millimeter units for prismatic joints and the generic fallback.
-		if steps, ok := referenceframe.JointInterpolationSteps(frame, startConfig, endConfig, resolution, .002); ok {
-			maxSteps = max(maxSteps, steps)
-		}
 	}
 	return maxSteps, nil
 }
